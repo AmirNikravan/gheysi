@@ -1,0 +1,9 @@
+{
+    "files": [
+        "mainwindow.py",
+        "form.ui",
+        "AnalogGaugeWidget.py",
+        "rsc.qrc",
+        "Worker.py"
+    ]
+}
