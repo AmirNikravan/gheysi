@@ -1,173 +1,81 @@
-import sys, os
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-class TableWidgetDragRows(QTableWidget):
-    def __init__(self, *args, **kwargs):
-        QTableWidget.__init__(self, *args, **kwargs)
+import sys
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget
+from PySide6.QtCore import QThread, Signal
+import random
+class Worker(QThread):
+    bar_val = Signal(dict)
+    gauge_val = Signal(dict)
 
-        self.setDragEnabled(True)
-        self.setAcceptDrops(True)
-        self.viewport().setAcceptDrops(True)
-        self.setDragDropOverwriteMode(False)
-        self.setDropIndicatorShown(True)
+    def run(self):
+        while True:
+            self.msleep(1000)
+            bar = {
+                'sea_water_pressure': random.randint(0, 10),
+                'oil_pressure': random.randint(0, 10),
+                'fuel_pressure': random.randint(0, 10),
+                'air_boost_pressure': random.randint(0, 10),
+                'speed': random.randint(0, 2200),
+                'exhaust_temperature_a': random.randint(0, 1200),
+                'exhaust_temperature_b': random.randint(0, 1200),
+                'air_temp_after': random.randint(0, 120),
+                'air_temp_before': random.randint(0, 120),
+                'sea_water_temperature': random.randint(0, 100),
+                'oil_temperature': random.randint(0, 100),
+                'fresh_water_temp_after': random.randint(0, 100),
+                'fresh_water_temp_before': random.randint(0, 100),
+                'fuel_rack_position': random.randint(0, 100),
+            }
+            gauge = {
+                'banka_exhaust': random.randint(0, 1000),
+                'bankb_exhaust': random.randint(0, 1000),
+                'banka_cooler': random.randint(0, 1000),
+                'bankb_cooler': random.randint(0, 1000),
+                'fresh_water_before': random.randint(0, 120),
+                'fresh_water_after': random.randint(0, 120),
+                'oil': random.randint(0, 120),
+                'fuel': random.randint(0, 1000),
+                'airboost': random.randint(0, 4),
+                'seawater': random.randint(0, 120)
+            }
+            self.bar_val.emit(bar)
+            self.gauge_val.emit(gauge)
 
-        self.setSelectionMode(QAbstractItemView.SingleSelection) 
-        self.setSelectionBehavior(QAbstractItemView.SelectRows)
-        self.setDragDropMode(QAbstractItemView.InternalMove)   
-
-    def dropEvent(self, event):
-        if event.source() == self and (event.dropAction() == Qt.MoveAction or self.dragDropMode() == QAbstractItemView.InternalMove):
-            success, row, col, topIndex = self.dropOn(event)
-            if success:             
-                selRows = self.getSelectedRowsFast()                        
-
-                top = selRows[0]
-                # print 'top is %d'%top
-                dropRow = row
-                if dropRow == -1:
-                    dropRow = self.rowCount()
-                # print 'dropRow is %d'%dropRow
-                offset = dropRow - top
-                # print 'offset is %d'%offset
-
-                for i, row in enumerate(selRows):
-                    r = row + offset
-                    if r > self.rowCount() or r < 0:
-                        r = 0
-                    self.insertRow(r)
-                    # print 'inserting row at %d'%r
-
-
-                selRows = self.getSelectedRowsFast()
-                # print 'selected rows: %s'%selRows
-
-                top = selRows[0]
-                # print 'top is %d'%top
-                offset = dropRow - top                
-                # print 'offset is %d'%offset
-                for i, row in enumerate(selRows):
-                    r = row + offset
-                    if r > self.rowCount() or r < 0:
-                        r = 0
-
-                    for j in range(self.columnCount()):
-                        # print 'source is (%d, %d)'%(row, j)
-                        # print 'item text: %s'%self.item(row,j).text()
-                        source = QTableWidgetItem(self.item(row, j))
-                        # print 'dest is (%d, %d)'%(r,j)
-                        self.setItem(r, j, source)
-
-                # Why does this NOT need to be here?
-                # for row in reversed(selRows):
-                    # self.removeRow(row)
-
-                event.accept()
-
-        else:
-            QTableView.dropEvent(event)                
-
-    def getSelectedRowsFast(self):
-        selRows = []
-        for item in self.selectedItems():
-            if item.row() not in selRows:
-                selRows.append(item.row())
-        return selRows
-
-    def droppingOnItself(self, event, index):
-        dropAction = event.dropAction()
-
-        if self.dragDropMode() == QAbstractItemView.InternalMove:
-            dropAction = Qt.MoveAction
-
-        if event.source() == self and event.possibleActions() & Qt.MoveAction and dropAction == Qt.MoveAction:
-            selectedIndexes = self.selectedIndexes()
-            child = index
-            while child.isValid() and child != self.rootIndex():
-                if child in selectedIndexes:
-                    return True
-                child = child.parent()
-
-        return False
-
-    def dropOn(self, event):
-        if event.isAccepted():
-            return False, None, None, None
-
-        index = QModelIndex()
-        row = -1
-        col = -1
-
-        if self.viewport().rect().contains(event.pos()):
-            index = self.indexAt(event.pos())
-            if not index.isValid() or not self.visualRect(index).contains(event.pos()):
-                index = self.rootIndex()
-
-        if self.model().supportedDropActions() & event.dropAction():
-            if index != self.rootIndex():
-                dropIndicatorPosition = self.position(event.pos(), self.visualRect(index), index)
-
-                if dropIndicatorPosition == QAbstractItemView.AboveItem:
-                    row = index.row()
-                    col = index.column()
-                    # index = index.parent()
-                elif dropIndicatorPosition == QAbstractItemView.BelowItem:
-                    row = index.row() + 1
-                    col = index.column()
-                    # index = index.parent()
-                else:
-                    row = index.row()
-                    col = index.column()
-
-            if not self.droppingOnItself(event, index):
-                # print 'row is %d'%row
-                # print 'col is %d'%col
-                return True, row, col, index
-
-        return False, None, None, None
-
-    def position(self, pos, rect, index):
-        r = QAbstractItemView.OnViewport
-        margin = 2
-        if pos.y() - rect.top() < margin:
-            r = QAbstractItemView.AboveItem
-        elif rect.bottom() - pos.y() < margin:
-            r = QAbstractItemView.BelowItem 
-        elif rect.contains(pos, True):
-            r = QAbstractItemView.OnItem
-
-        if r == QAbstractItemView.OnItem and not (self.model().flags(index) & Qt.ItemIsDropEnabled):
-            r = QAbstractItemView.AboveItem if pos.y() < rect.center().y() else QAbstractItemView.BelowItem
-
-        return r
-
-
-class Window(QWidget):
+class MainWindow(QMainWindow):
     def __init__(self):
-        super(Window, self).__init__()
+        super().__init__()
+        self.setWindowTitle("Multi-threaded Button Click Example")
 
-        layout = QHBoxLayout()
-        self.setLayout(layout) 
+        central_widget = QWidget()
+        layout = QVBoxLayout()
+        central_widget.setLayout(layout)
+        self.setCentralWidget(central_widget)
 
-        self.table_widget = TableWidgetDragRows()
-        layout.addWidget(self.table_widget) 
+        self.buttons = []
+        self.threads = []
 
-        # setup table widget
-        self.table_widget.setColumnCount(2)
-        self.table_widget.setHorizontalHeaderLabels(['Colour', 'Model'])
+        for i in range(10):
+            button = QPushButton(f"Button {i+1}")
+            layout.addWidget(button)
+            button.clicked.connect(lambda checked, idx=i: self.on_button_clicked(idx))
+            self.buttons.append(button)
 
-        items = [('Red', 'Toyota'), ('Blue', 'RV'), ('Green', 'Beetle')]
-        for i, (colour, model) in enumerate(items):
-            c = QTableWidgetItem(colour)
-            m = QTableWidgetItem(model)
+            thread = Worker()
+            thread.bar_val.connect(self.update_bar)
+            thread.gauge_val.connect(self.update_gauge)
+            self.threads.append(thread)
+            thread.start()
 
-            self.table_widget.insertRow(self.table_widget.rowCount())
-            self.table_widget.setItem(i, 0, c)
-            self.table_widget.setItem(i, 1, m)
+    def on_button_clicked(self, button_id):
+        print(f"Button {button_id + 1} clicked.")
 
-        self.show()
+    def update_bar(self, bar_values):
+        print(f"Bar values updated: {bar_values}")
 
+    def update_gauge(self, gauge_values):
+        print(f"Gauge values updated: {gauge_values}")
 
-app = QApplication(sys.argv)
-window = Window()
-sys.exit(app.exec_())
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec())
