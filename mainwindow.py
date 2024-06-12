@@ -26,7 +26,8 @@ class MainWindow(QMainWindow):
         self.thread.gauge_val.connect(self.update_gauges)
         self.thread.bar_val.connect(self.update_bars)
         self.start_thread()
-
+    def desgin_gauge(self):
+        pass
     def update_gauges(self, val):
         # print(val)
         self.ui.gauge_exhuast_a.value = val['banka_exhuast']
@@ -35,6 +36,10 @@ class MainWindow(QMainWindow):
         self.ui.gauge_cooler_b.value = val['bankb_cooler']
         self.ui.gauge_fw_be.value = val['fresh_water_before']
         self.ui.gauge_fw_af.value = val['fresh_water_after']
+        self.ui.gauge_oil.value = val['oil']
+        self.ui.gauge_airboost.value = val['airboost']
+        self.ui.gauge_fuel.value = val['fuel']
+        self.ui.gauge_seawater.value = val['seawater']
         # Force repaint to ensure UI updates
         self.ui.gauge_exhuast_a.repaint()
         self.ui.gauge_exhuast_b.repaint()
@@ -42,7 +47,10 @@ class MainWindow(QMainWindow):
         self.ui.gauge_cooler_b.repaint()
         self.ui.gauge_fw_be.repaint()
         self.ui.gauge_fw_af.repaint()
-
+        self.ui.gauge_oil.repaint()
+        self.ui.gauge_airboost.repaint()
+        self.ui.gauge_fuel.repaint()
+        self.ui.gauge_seawater.repaint()
     def update_bars(self,val):
         self.ui.sea_water_pressure_bar.setValue(val['sea_water_pressure'])
         self.ui.lcdNumber_sea_water_pressure_bar.display(val['sea_water_pressure'])

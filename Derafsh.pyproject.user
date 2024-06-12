@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 13.0.1, 2024-06-05T17:52:53. -->
+<!-- Written by QtCreator 13.0.1, 2024-06-12T20:56:13. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -101,8 +101,6 @@
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Python.PysideBuildStep</value>
-      <value type="QString" key="Python.PySideProjectTool">/home/nullptr/programming/derafsh/dmgsh/.qtcreator/Python_3_12_3venv_2/bin/pyside6-project</value>
-      <value type="QString" key="Python.PySideUic">/home/nullptr/programming/derafsh/dmgsh/.qtcreator/Python_3_12_3venv_2/bin/pyside6-uic</value>
      </valuemap>
      <value type="qlonglong" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Build</value>
@@ -159,8 +157,8 @@
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Python.PysideBuildStep</value>
-      <value type="QString" key="Python.PySideProjectTool">/home/nullptr/.local/bin/pyside6-project</value>
-      <value type="QString" key="Python.PySideUic">/home/nullptr/.local/bin/pyside6-uic</value>
+      <value type="QString" key="Python.PySideProjectTool">/usr/bin/pyside6-project</value>
+      <value type="QString" key="Python.PySideUic">/usr/bin/pyside6-uic</value>
      </valuemap>
      <value type="qlonglong" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Build</value>
@@ -250,7 +248,7 @@
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Worker.py</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration./home/nullptr/programming/derafsh/dmgsh/Worker.py</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/nullptr/programming/derafsh/dmgsh/Worker.py</value>
-    <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">false</value>
+    <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">true</value>
     <value type="QString" key="PythonEditor.RunConfiguation.Script">/home/nullptr/programming/derafsh/dmgsh/Worker.py</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>

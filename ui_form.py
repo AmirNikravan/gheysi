@@ -229,68 +229,6 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.frame_8, 0, 2, 1, 1)
 
-        self.frame_11 = QFrame(self.gauges)
-        self.frame_11.setObjectName(u"frame_11")
-        self.frame_11.setFrameShape(QFrame.StyledPanel)
-        self.frame_11.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_11 = QVBoxLayout(self.frame_11)
-        self.verticalLayout_11.setObjectName(u"verticalLayout_11")
-        self.horizontalLayout_5 = QHBoxLayout()
-        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
-        self.frame_12 = QFrame(self.frame_11)
-        self.frame_12.setObjectName(u"frame_12")
-        self.frame_12.setFrameShape(QFrame.StyledPanel)
-        self.frame_12.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_12 = QVBoxLayout(self.frame_12)
-        self.verticalLayout_12.setObjectName(u"verticalLayout_12")
-        self.widget_7 = AnalogGaugeWidget(self.frame_12)
-        self.widget_7.setObjectName(u"widget_7")
-
-        self.verticalLayout_12.addWidget(self.widget_7)
-
-        self.label_11 = QLabel(self.frame_12)
-        self.label_11.setObjectName(u"label_11")
-        self.label_11.setMinimumSize(QSize(15, 0))
-        self.label_11.setMaximumSize(QSize(16777215, 13))
-
-        self.verticalLayout_12.addWidget(self.label_11)
-
-
-        self.horizontalLayout_5.addWidget(self.frame_12)
-
-        self.frame_13 = QFrame(self.frame_11)
-        self.frame_13.setObjectName(u"frame_13")
-        self.frame_13.setFrameShape(QFrame.StyledPanel)
-        self.frame_13.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_13 = QVBoxLayout(self.frame_13)
-        self.verticalLayout_13.setObjectName(u"verticalLayout_13")
-        self.widget_8 = AnalogGaugeWidget(self.frame_13)
-        self.widget_8.setObjectName(u"widget_8")
-
-        self.verticalLayout_13.addWidget(self.widget_8)
-
-        self.label_12 = QLabel(self.frame_13)
-        self.label_12.setObjectName(u"label_12")
-        self.label_12.setMinimumSize(QSize(15, 0))
-        self.label_12.setMaximumSize(QSize(16777215, 13))
-
-        self.verticalLayout_13.addWidget(self.label_12)
-
-
-        self.horizontalLayout_5.addWidget(self.frame_13)
-
-
-        self.verticalLayout_11.addLayout(self.horizontalLayout_5)
-
-        self.label_13 = QLabel(self.frame_11)
-        self.label_13.setObjectName(u"label_13")
-        self.label_13.setMaximumSize(QSize(16777215, 9))
-
-        self.verticalLayout_11.addWidget(self.label_13)
-
-
-        self.gridLayout.addWidget(self.frame_11, 1, 0, 1, 1)
-
         self.frame_14 = QFrame(self.gauges)
         self.frame_14.setObjectName(u"frame_14")
         self.frame_14.setFrameShape(QFrame.StyledPanel)
@@ -305,10 +243,10 @@ class Ui_MainWindow(object):
         self.frame_15.setFrameShadow(QFrame.Raised)
         self.verticalLayout_15 = QVBoxLayout(self.frame_15)
         self.verticalLayout_15.setObjectName(u"verticalLayout_15")
-        self.widget_9 = AnalogGaugeWidget(self.frame_15)
-        self.widget_9.setObjectName(u"widget_9")
+        self.gauge_fuel = AnalogGaugeWidget(self.frame_15)
+        self.gauge_fuel.setObjectName(u"gauge_fuel")
 
-        self.verticalLayout_15.addWidget(self.widget_9)
+        self.verticalLayout_15.addWidget(self.gauge_fuel)
 
         self.label_14 = QLabel(self.frame_15)
         self.label_14.setObjectName(u"label_14")
@@ -326,10 +264,11 @@ class Ui_MainWindow(object):
         self.frame_16.setFrameShadow(QFrame.Raised)
         self.verticalLayout_16 = QVBoxLayout(self.frame_16)
         self.verticalLayout_16.setObjectName(u"verticalLayout_16")
-        self.widget_10 = AnalogGaugeWidget(self.frame_16)
-        self.widget_10.setObjectName(u"widget_10")
+        self.gauge_airboost = AnalogGaugeWidget(self.frame_16)
+        self.gauge_airboost.setObjectName(u"gauge_airboost")
+        self.gauge_airboost.setMinimumSize(QSize(0, 0))
 
-        self.verticalLayout_16.addWidget(self.widget_10)
+        self.verticalLayout_16.addWidget(self.gauge_airboost)
 
         self.label_15 = QLabel(self.frame_16)
         self.label_15.setObjectName(u"label_15")
@@ -344,76 +283,64 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_14.addLayout(self.horizontalLayout_6)
 
-        self.label_16 = QLabel(self.frame_14)
-        self.label_16.setObjectName(u"label_16")
-        self.label_16.setMaximumSize(QSize(16777215, 9))
 
-        self.verticalLayout_14.addWidget(self.label_16)
+        self.gridLayout.addWidget(self.frame_14, 1, 0, 1, 1)
 
+        self.frame_11 = QFrame(self.gauges)
+        self.frame_11.setObjectName(u"frame_11")
+        self.frame_11.setFrameShape(QFrame.StyledPanel)
+        self.frame_11.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_11 = QVBoxLayout(self.frame_11)
+        self.verticalLayout_11.setObjectName(u"verticalLayout_11")
+        self.horizontalLayout_5 = QHBoxLayout()
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.frame_12 = QFrame(self.frame_11)
+        self.frame_12.setObjectName(u"frame_12")
+        self.frame_12.setFrameShape(QFrame.StyledPanel)
+        self.frame_12.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_12 = QVBoxLayout(self.frame_12)
+        self.verticalLayout_12.setObjectName(u"verticalLayout_12")
+        self.gauge_seawater = AnalogGaugeWidget(self.frame_12)
+        self.gauge_seawater.setObjectName(u"gauge_seawater")
 
-        self.gridLayout.addWidget(self.frame_14, 1, 1, 1, 1)
+        self.verticalLayout_12.addWidget(self.gauge_seawater)
 
-        self.frame_17 = QFrame(self.gauges)
-        self.frame_17.setObjectName(u"frame_17")
-        self.frame_17.setFrameShape(QFrame.StyledPanel)
-        self.frame_17.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_17 = QVBoxLayout(self.frame_17)
-        self.verticalLayout_17.setObjectName(u"verticalLayout_17")
-        self.horizontalLayout_7 = QHBoxLayout()
-        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
-        self.frame_18 = QFrame(self.frame_17)
-        self.frame_18.setObjectName(u"frame_18")
-        self.frame_18.setFrameShape(QFrame.StyledPanel)
-        self.frame_18.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_18 = QVBoxLayout(self.frame_18)
-        self.verticalLayout_18.setObjectName(u"verticalLayout_18")
-        self.widget_11 = AnalogGaugeWidget(self.frame_18)
-        self.widget_11.setObjectName(u"widget_11")
+        self.label_11 = QLabel(self.frame_12)
+        self.label_11.setObjectName(u"label_11")
+        self.label_11.setMinimumSize(QSize(15, 0))
+        self.label_11.setMaximumSize(QSize(16777215, 13))
 
-        self.verticalLayout_18.addWidget(self.widget_11)
-
-        self.label_17 = QLabel(self.frame_18)
-        self.label_17.setObjectName(u"label_17")
-        self.label_17.setMinimumSize(QSize(15, 0))
-        self.label_17.setMaximumSize(QSize(16777215, 13))
-
-        self.verticalLayout_18.addWidget(self.label_17)
+        self.verticalLayout_12.addWidget(self.label_11)
 
 
-        self.horizontalLayout_7.addWidget(self.frame_18)
+        self.horizontalLayout_5.addWidget(self.frame_12)
 
-        self.frame_19 = QFrame(self.frame_17)
-        self.frame_19.setObjectName(u"frame_19")
-        self.frame_19.setFrameShape(QFrame.StyledPanel)
-        self.frame_19.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_19 = QVBoxLayout(self.frame_19)
-        self.verticalLayout_19.setObjectName(u"verticalLayout_19")
-        self.widget_12 = QWidget(self.frame_19)
-        self.widget_12.setObjectName(u"widget_12")
+        self.frame_13 = QFrame(self.frame_11)
+        self.frame_13.setObjectName(u"frame_13")
+        self.frame_13.setFrameShape(QFrame.StyledPanel)
+        self.frame_13.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_13 = QVBoxLayout(self.frame_13)
+        self.verticalLayout_13.setObjectName(u"verticalLayout_13")
+        self.gauge_oil = AnalogGaugeWidget(self.frame_13)
+        self.gauge_oil.setObjectName(u"gauge_oil")
 
-        self.verticalLayout_19.addWidget(self.widget_12)
+        self.verticalLayout_13.addWidget(self.gauge_oil)
 
-        self.label_18 = QLabel(self.frame_19)
-        self.label_18.setObjectName(u"label_18")
-        self.label_18.setMinimumSize(QSize(15, 0))
-        self.label_18.setMaximumSize(QSize(16777215, 13))
+        self.label_12 = QLabel(self.frame_13)
+        self.label_12.setObjectName(u"label_12")
+        self.label_12.setMinimumSize(QSize(15, 0))
+        self.label_12.setMaximumSize(QSize(16777215, 13))
 
-        self.verticalLayout_19.addWidget(self.label_18)
-
-
-        self.horizontalLayout_7.addWidget(self.frame_19)
+        self.verticalLayout_13.addWidget(self.label_12)
 
 
-        self.verticalLayout_17.addLayout(self.horizontalLayout_7)
-
-        self.label_19 = QLabel(self.frame_17)
-        self.label_19.setObjectName(u"label_19")
-        self.label_19.setMaximumSize(QSize(16777215, 9))
-
-        self.verticalLayout_17.addWidget(self.label_19)
+        self.horizontalLayout_5.addWidget(self.frame_13)
 
 
-        self.gridLayout.addWidget(self.frame_17, 1, 2, 1, 1)
+        self.verticalLayout_11.addLayout(self.horizontalLayout_5)
+
+
+        self.gridLayout.addWidget(self.frame_11, 1, 2, 1, 1)
 
         self.stackedWidget.addWidget(self.gauges)
         self.lop = QWidget()
@@ -2662,7 +2589,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(0)
         self.stackedWidget_bar.setCurrentIndex(1)
 
 
@@ -2680,15 +2607,10 @@ class Ui_MainWindow(object):
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"Befor Thermo", None))
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"After Thermo", None))
         self.label_10.setText(QCoreApplication.translate("MainWindow", u"Fresh Water", None))
-        self.label_11.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_12.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_13.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_14.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_15.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_16.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_17.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_18.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_19.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.label_14.setText(QCoreApplication.translate("MainWindow", u"Fuel", None))
+        self.label_15.setText(QCoreApplication.translate("MainWindow", u"Air Boost", None))
+        self.label_11.setText(QCoreApplication.translate("MainWindow", u"Sea Water", None))
+        self.label_12.setText(QCoreApplication.translate("MainWindow", u"Oil", None))
         self.toolButton_lamptest.setText(QCoreApplication.translate("MainWindow", u"...", None))
         self.label_24.setText(QCoreApplication.translate("MainWindow", u"Lamp Test", None))
         self.toolButton_lop.setText(QCoreApplication.translate("MainWindow", u"...", None))

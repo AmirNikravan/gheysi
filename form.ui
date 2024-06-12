@@ -36,7 +36,7 @@
        <string notr="true">background-color: rgb(39, 51, 109);</string>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="gauges">
        <layout class="QGridLayout" name="gridLayout">
@@ -332,103 +332,6 @@
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QFrame" name="frame_11">
-          <property name="frameShape">
-           <enum>QFrame::StyledPanel</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_11">
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_5">
-             <item>
-              <widget class="QFrame" name="frame_12">
-               <property name="frameShape">
-                <enum>QFrame::StyledPanel</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Raised</enum>
-               </property>
-               <layout class="QVBoxLayout" name="verticalLayout_12">
-                <item>
-                 <widget class="AnalogGaugeWidget" name="widget_7" native="true"/>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_11">
-                  <property name="minimumSize">
-                   <size>
-                    <width>15</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>13</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string>TextLabel</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
-             <item>
-              <widget class="QFrame" name="frame_13">
-               <property name="frameShape">
-                <enum>QFrame::StyledPanel</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Raised</enum>
-               </property>
-               <layout class="QVBoxLayout" name="verticalLayout_13">
-                <item>
-                 <widget class="AnalogGaugeWidget" name="widget_8" native="true"/>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_12">
-                  <property name="minimumSize">
-                   <size>
-                    <width>15</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>13</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string>TextLabel</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <widget class="QLabel" name="label_13">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>9</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="1" column="1">
          <widget class="QFrame" name="frame_14">
           <property name="frameShape">
            <enum>QFrame::StyledPanel</enum>
@@ -449,7 +352,7 @@
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_15">
                 <item>
-                 <widget class="AnalogGaugeWidget" name="widget_9" native="true"/>
+                 <widget class="AnalogGaugeWidget" name="gauge_fuel" native="true"/>
                 </item>
                 <item>
                  <widget class="QLabel" name="label_14">
@@ -466,7 +369,7 @@
                    </size>
                   </property>
                   <property name="text">
-                   <string>TextLabel</string>
+                   <string>Fuel</string>
                   </property>
                  </widget>
                 </item>
@@ -483,7 +386,14 @@
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_16">
                 <item>
-                 <widget class="AnalogGaugeWidget" name="widget_10" native="true"/>
+                 <widget class="AnalogGaugeWidget" name="gauge_airboost" native="true">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                 </widget>
                 </item>
                 <item>
                  <widget class="QLabel" name="label_15">
@@ -500,7 +410,7 @@
                    </size>
                   </property>
                   <property name="text">
-                   <string>TextLabel</string>
+                   <string>Air Boost</string>
                   </property>
                  </widget>
                 </item>
@@ -509,47 +419,34 @@
              </item>
             </layout>
            </item>
-           <item>
-            <widget class="QLabel" name="label_16">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>9</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-            </widget>
-           </item>
           </layout>
          </widget>
         </item>
         <item row="1" column="2">
-         <widget class="QFrame" name="frame_17">
+         <widget class="QFrame" name="frame_11">
           <property name="frameShape">
            <enum>QFrame::StyledPanel</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Raised</enum>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_17">
+          <layout class="QVBoxLayout" name="verticalLayout_11">
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_7">
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
              <item>
-              <widget class="QFrame" name="frame_18">
+              <widget class="QFrame" name="frame_12">
                <property name="frameShape">
                 <enum>QFrame::StyledPanel</enum>
                </property>
                <property name="frameShadow">
                 <enum>QFrame::Raised</enum>
                </property>
-               <layout class="QVBoxLayout" name="verticalLayout_18">
+               <layout class="QVBoxLayout" name="verticalLayout_12">
                 <item>
-                 <widget class="AnalogGaugeWidget" name="widget_11" native="true"/>
+                 <widget class="AnalogGaugeWidget" name="gauge_seawater" native="true"/>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_17">
+                 <widget class="QLabel" name="label_11">
                   <property name="minimumSize">
                    <size>
                     <width>15</width>
@@ -563,7 +460,7 @@
                    </size>
                   </property>
                   <property name="text">
-                   <string>TextLabel</string>
+                   <string>Sea Water</string>
                   </property>
                  </widget>
                 </item>
@@ -571,19 +468,19 @@
               </widget>
              </item>
              <item>
-              <widget class="QFrame" name="frame_19">
+              <widget class="QFrame" name="frame_13">
                <property name="frameShape">
                 <enum>QFrame::StyledPanel</enum>
                </property>
                <property name="frameShadow">
                 <enum>QFrame::Raised</enum>
                </property>
-               <layout class="QVBoxLayout" name="verticalLayout_19">
+               <layout class="QVBoxLayout" name="verticalLayout_13">
                 <item>
-                 <widget class="QWidget" name="widget_12" native="true"/>
+                 <widget class="AnalogGaugeWidget" name="gauge_oil" native="true"/>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_18">
+                 <widget class="QLabel" name="label_12">
                   <property name="minimumSize">
                    <size>
                     <width>15</width>
@@ -597,7 +494,7 @@
                    </size>
                   </property>
                   <property name="text">
-                   <string>TextLabel</string>
+                   <string>Oil</string>
                   </property>
                  </widget>
                 </item>
@@ -605,19 +502,6 @@
               </widget>
              </item>
             </layout>
-           </item>
-           <item>
-            <widget class="QLabel" name="label_19">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>9</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-            </widget>
            </item>
           </layout>
          </widget>
