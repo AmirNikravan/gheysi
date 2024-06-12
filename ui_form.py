@@ -350,6 +350,24 @@ class Ui_MainWindow(object):
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.frame_20 = QFrame(self.lop)
         self.frame_20.setObjectName(u"frame_20")
+        self.frame_20.setStyleSheet(u"            QToolButton {\n"
+"                background-color: rgb(93, 93, 93);\n"
+"                border-style: outset;\n"
+"                border-width: 3px;\n"
+"                border-radius: 40px;\n"
+"                border-color: rgb(232, 232, 232);\n"
+"            }\n"
+"            QToolButton:pressed {\n"
+"                background-color: red;\n"
+"            }\n"
+"            QPushButton {\n"
+"                background-color: rgb(93, 93, 93);\n"
+"                border-style: outset;\n"
+"                border-width: 3px;\n"
+"                border-radius: 40px;\n"
+"                border-color: rgb(232, 232, 232);\n"
+"            }\n"
+"")
         self.frame_20.setFrameShape(QFrame.StyledPanel)
         self.frame_20.setFrameShadow(QFrame.Raised)
         self.gridLayout_2 = QGridLayout(self.frame_20)
@@ -363,18 +381,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_20.setObjectName(u"verticalLayout_20")
         self.toolButton_lamptest = QToolButton(self.frame_22)
         self.toolButton_lamptest.setObjectName(u"toolButton_lamptest")
-        self.toolButton_lamptest.setStyleSheet(u"            #toolButton_lamptest {\n"
-"                background-color: rgb(93, 93, 93);\n"
-"                border-style: outset;\n"
-"                border-width: 3px;\n"
-"                border-radius: 40px;\n"
-"                border-color: rgb(232, 232, 232);\n"
-"            }\n"
-"            #toolButton_lamptest:pressed {\n"
-"                background-color: red;\n"
-"            }")
+        self.toolButton_lamptest.setStyleSheet(u"")
         icon = QIcon()
-        icon.addFile(u":/icons/icons/button.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u":/icons/icons/start.png", QSize(), QIcon.Normal, QIcon.Off)
         self.toolButton_lamptest.setIcon(icon)
         self.toolButton_lamptest.setIconSize(QSize(512, 512))
 
@@ -388,16 +397,7 @@ class Ui_MainWindow(object):
 
         self.toolButton_lop = QToolButton(self.frame_22)
         self.toolButton_lop.setObjectName(u"toolButton_lop")
-        self.toolButton_lop.setStyleSheet(u"            #toolButton_lop {\n"
-"                background-color: rgb(93, 93, 93);\n"
-"                border-style: outset;\n"
-"                border-width: 3px;\n"
-"                border-radius: 40px;\n"
-"                border-color: rgb(232, 232, 232);\n"
-"            }\n"
-"            #toolButton_lop:pressed {\n"
-"                background-color: red;\n"
-"            }")
+        self.toolButton_lop.setStyleSheet(u"")
         self.toolButton_lop.setIcon(icon)
         self.toolButton_lop.setIconSize(QSize(512, 512))
 
@@ -411,16 +411,7 @@ class Ui_MainWindow(object):
 
         self.toolButton_mcr = QToolButton(self.frame_22)
         self.toolButton_mcr.setObjectName(u"toolButton_mcr")
-        self.toolButton_mcr.setStyleSheet(u"            #toolButton_mcr {\n"
-"                background-color: rgb(93, 93, 93);\n"
-"                border-style: outset;\n"
-"                border-width: 3px;\n"
-"                border-radius: 40px;\n"
-"                border-color: rgb(232, 232, 232);\n"
-"            }\n"
-"            #toolButton_mcr:pressed {\n"
-"                background-color: red;\n"
-"            }")
+        self.toolButton_mcr.setStyleSheet(u"")
         self.toolButton_mcr.setIcon(icon)
         self.toolButton_mcr.setIconSize(QSize(512, 512))
 
@@ -434,16 +425,7 @@ class Ui_MainWindow(object):
 
         self.toolButton_bridge = QToolButton(self.frame_22)
         self.toolButton_bridge.setObjectName(u"toolButton_bridge")
-        self.toolButton_bridge.setStyleSheet(u"            #toolButton_bridge {\n"
-"                background-color: rgb(93, 93, 93);\n"
-"                border-style: outset;\n"
-"                border-width: 3px;\n"
-"                border-radius: 40px;\n"
-"                border-color: rgb(232, 232, 232);\n"
-"            }\n"
-"            #toolButton_bridge:pressed {\n"
-"                background-color: red;\n"
-"            }")
+        self.toolButton_bridge.setStyleSheet(u"")
         self.toolButton_bridge.setIcon(icon)
         self.toolButton_bridge.setIconSize(QSize(512, 512))
 
@@ -468,16 +450,7 @@ class Ui_MainWindow(object):
         self.pushButton_control = QPushButton(self.frame_21)
         self.pushButton_control.setObjectName(u"pushButton_control")
         self.pushButton_control.setMinimumSize(QSize(74, 86))
-        self.pushButton_control.setStyleSheet(u"            #pushButton_control {\n"
-"                background-color: rgb(93, 93, 93);\n"
-"                border-style: outset;\n"
-"                border-width: 3px;\n"
-"                border-radius: 40px;\n"
-"                border-color: rgb(232, 232, 232);\n"
-"            }\n"
-"            #pushButton_control:pressed {\n"
-"                background-color: red;\n"
-"            }")
+        self.pushButton_control.setStyleSheet(u"")
 
         self.verticalLayout_21.addWidget(self.pushButton_control)
 
@@ -487,22 +460,12 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_21.addWidget(self.label_20)
 
-        self.pushButton_control_2 = QPushButton(self.frame_21)
-        self.pushButton_control_2.setObjectName(u"pushButton_control_2")
-        self.pushButton_control_2.setMinimumSize(QSize(74, 86))
-        self.pushButton_control_2.setStyleSheet(u"            #pushButton_control_2 {\n"
-"                background-color: rgb(93, 93, 93);\n"
-"                border-style: outset;\n"
-"                border-width: 3px;\n"
-"                border-radius: 40px;\n"
-"                border-color: rgb(232, 232, 232);\n"
-"            }\n"
-"            #pushButton_control_2:pressed\n"
-" {\n"
-"                background-color: red;\n"
-"            }")
+        self.pushButton_speedreduced = QPushButton(self.frame_21)
+        self.pushButton_speedreduced.setObjectName(u"pushButton_speedreduced")
+        self.pushButton_speedreduced.setMinimumSize(QSize(74, 86))
+        self.pushButton_speedreduced.setStyleSheet(u"")
 
-        self.verticalLayout_21.addWidget(self.pushButton_control_2)
+        self.verticalLayout_21.addWidget(self.pushButton_speedreduced)
 
         self.label_21 = QLabel(self.frame_21)
         self.label_21.setObjectName(u"label_21")
@@ -510,22 +473,13 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_21.addWidget(self.label_21)
 
-        self.toolButton = QToolButton(self.frame_21)
-        self.toolButton.setObjectName(u"toolButton")
-        self.toolButton.setStyleSheet(u"            #toolButton {\n"
-"                background-color: rgb(93, 93, 93);\n"
-"                border-style: outset;\n"
-"                border-width: 3px;\n"
-"                border-radius: 40px;\n"
-"                border-color: rgb(232, 232, 232);\n"
-"            }\n"
-"            #toolButton:pressed {\n"
-"                background-color: red;\n"
-"            }")
-        self.toolButton.setIcon(icon)
-        self.toolButton.setIconSize(QSize(512, 512))
+        self.toolButton_increase_speed = QToolButton(self.frame_21)
+        self.toolButton_increase_speed.setObjectName(u"toolButton_increase_speed")
+        self.toolButton_increase_speed.setStyleSheet(u"")
+        self.toolButton_increase_speed.setIcon(icon)
+        self.toolButton_increase_speed.setIconSize(QSize(512, 512))
 
-        self.verticalLayout_21.addWidget(self.toolButton)
+        self.verticalLayout_21.addWidget(self.toolButton_increase_speed)
 
         self.label_22 = QLabel(self.frame_21)
         self.label_22.setObjectName(u"label_22")
@@ -533,22 +487,13 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_21.addWidget(self.label_22)
 
-        self.toolButton_2 = QToolButton(self.frame_21)
-        self.toolButton_2.setObjectName(u"toolButton_2")
-        self.toolButton_2.setStyleSheet(u"            #toolButton_2 {\n"
-"                background-color: rgb(93, 93, 93);\n"
-"                border-style: outset;\n"
-"                border-width: 3px;\n"
-"                border-radius: 40px;\n"
-"                border-color: rgb(232, 232, 232);\n"
-"            }\n"
-"            #toolButton_2:pressed {\n"
-"                background-color: red;\n"
-"            }")
-        self.toolButton_2.setIcon(icon)
-        self.toolButton_2.setIconSize(QSize(512, 512))
+        self.toolButton_decrease_speed = QToolButton(self.frame_21)
+        self.toolButton_decrease_speed.setObjectName(u"toolButton_decrease_speed")
+        self.toolButton_decrease_speed.setStyleSheet(u"")
+        self.toolButton_decrease_speed.setIcon(icon)
+        self.toolButton_decrease_speed.setIconSize(QSize(512, 512))
 
-        self.verticalLayout_21.addWidget(self.toolButton_2)
+        self.verticalLayout_21.addWidget(self.toolButton_decrease_speed)
 
         self.label_23 = QLabel(self.frame_21)
         self.label_23.setObjectName(u"label_23")
@@ -564,35 +509,19 @@ class Ui_MainWindow(object):
         self.frame_23.setMaximumSize(QSize(112, 490))
         self.frame_23.setFrameShape(QFrame.StyledPanel)
         self.frame_23.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_22 = QVBoxLayout(self.frame_23)
-        self.verticalLayout_22.setObjectName(u"verticalLayout_22")
-        self.toolButton_7 = QToolButton(self.frame_23)
-        self.toolButton_7.setObjectName(u"toolButton_7")
-        self.toolButton_7.setStyleSheet(u"            #toolButton_3 {\n"
-"                background-color: rgb(93, 93, 93);\n"
-"                border-style: outset;\n"
-"                border-width: 3px;\n"
-"                border-radius: 40px;\n"
-"                border-color: rgb(232, 232, 232);\n"
-"            }\n"
-"            #toolButton_3:pressed {\n"
-"                background-color: red;\n"
-"            }")
-        self.toolButton_7.setIcon(icon)
-        self.toolButton_7.setIconSize(QSize(512, 512))
+        self.verticalLayout_17 = QVBoxLayout(self.frame_23)
+        self.verticalLayout_17.setObjectName(u"verticalLayout_17")
+        self.label_13 = QLabel(self.frame_23)
+        self.label_13.setObjectName(u"label_13")
+        self.label_13.setMinimumSize(QSize(0, 106))
+        self.label_13.setMaximumSize(QSize(12, 74))
 
-        self.verticalLayout_22.addWidget(self.toolButton_7)
+        self.verticalLayout_17.addWidget(self.label_13)
 
-        self.label_28 = QLabel(self.frame_23)
-        self.label_28.setObjectName(u"label_28")
-        self.label_28.setMaximumSize(QSize(16777215, 14))
-
-        self.verticalLayout_22.addWidget(self.label_28)
-
-        self.pushButton_control_3 = QPushButton(self.frame_23)
-        self.pushButton_control_3.setObjectName(u"pushButton_control_3")
-        self.pushButton_control_3.setMinimumSize(QSize(74, 86))
-        self.pushButton_control_3.setStyleSheet(u"            #pushButton_control_2 {\n"
+        self.pushButton_failed = QPushButton(self.frame_23)
+        self.pushButton_failed.setObjectName(u"pushButton_failed")
+        self.pushButton_failed.setMinimumSize(QSize(74, 86))
+        self.pushButton_failed.setStyleSheet(u"            #pushButton_control_2 {\n"
 "                background-color: rgb(93, 93, 93);\n"
 "                border-style: outset;\n"
 "                border-width: 3px;\n"
@@ -603,59 +532,41 @@ class Ui_MainWindow(object):
 "                background-color: red;\n"
 "            }")
 
-        self.verticalLayout_22.addWidget(self.pushButton_control_3)
+        self.verticalLayout_17.addWidget(self.pushButton_failed)
 
         self.label_31 = QLabel(self.frame_23)
         self.label_31.setObjectName(u"label_31")
         self.label_31.setMaximumSize(QSize(16777215, 14))
 
-        self.verticalLayout_22.addWidget(self.label_31)
+        self.verticalLayout_17.addWidget(self.label_31)
 
-        self.toolButton_8 = QToolButton(self.frame_23)
-        self.toolButton_8.setObjectName(u"toolButton_8")
-        self.toolButton_8.setStyleSheet(u"            #toolButton_3 {\n"
-"                background-color: rgb(93, 93, 93);\n"
-"                border-style: outset;\n"
-"                border-width: 3px;\n"
-"                border-radius: 40px;\n"
-"                border-color: rgb(232, 232, 232);\n"
-"            }\n"
-"            #toolButton_3:pressed {\n"
-"                background-color: red;\n"
-"            }")
-        self.toolButton_8.setIcon(icon)
-        self.toolButton_8.setIconSize(QSize(512, 512))
+        self.toolButton_fault_ack = QToolButton(self.frame_23)
+        self.toolButton_fault_ack.setObjectName(u"toolButton_fault_ack")
+        self.toolButton_fault_ack.setStyleSheet(u"")
+        self.toolButton_fault_ack.setIcon(icon)
+        self.toolButton_fault_ack.setIconSize(QSize(512, 512))
 
-        self.verticalLayout_22.addWidget(self.toolButton_8)
+        self.verticalLayout_17.addWidget(self.toolButton_fault_ack)
 
         self.label_29 = QLabel(self.frame_23)
         self.label_29.setObjectName(u"label_29")
         self.label_29.setMaximumSize(QSize(16777215, 14))
 
-        self.verticalLayout_22.addWidget(self.label_29)
+        self.verticalLayout_17.addWidget(self.label_29)
 
-        self.toolButton_9 = QToolButton(self.frame_23)
-        self.toolButton_9.setObjectName(u"toolButton_9")
-        self.toolButton_9.setStyleSheet(u"            #toolButton_3 {\n"
-"                background-color: rgb(93, 93, 93);\n"
-"                border-style: outset;\n"
-"                border-width: 3px;\n"
-"                border-radius: 40px;\n"
-"                border-color: rgb(232, 232, 232);\n"
-"            }\n"
-"            #toolButton_3:pressed {\n"
-"                background-color: red;\n"
-"            }")
-        self.toolButton_9.setIcon(icon)
-        self.toolButton_9.setIconSize(QSize(512, 512))
+        self.toolButton_fault_reset = QToolButton(self.frame_23)
+        self.toolButton_fault_reset.setObjectName(u"toolButton_fault_reset")
+        self.toolButton_fault_reset.setStyleSheet(u"")
+        self.toolButton_fault_reset.setIcon(icon)
+        self.toolButton_fault_reset.setIconSize(QSize(512, 512))
 
-        self.verticalLayout_22.addWidget(self.toolButton_9)
+        self.verticalLayout_17.addWidget(self.toolButton_fault_reset)
 
         self.label_30 = QLabel(self.frame_23)
         self.label_30.setObjectName(u"label_30")
         self.label_30.setMaximumSize(QSize(16777215, 14))
 
-        self.verticalLayout_22.addWidget(self.label_30)
+        self.verticalLayout_17.addWidget(self.label_30)
 
 
         self.gridLayout_2.addWidget(self.frame_23, 0, 2, 1, 1)
@@ -667,10 +578,10 @@ class Ui_MainWindow(object):
         self.frame_24.setFrameShadow(QFrame.Raised)
         self.verticalLayout_23 = QVBoxLayout(self.frame_24)
         self.verticalLayout_23.setObjectName(u"verticalLayout_23")
-        self.pushButton_control_4 = QPushButton(self.frame_24)
-        self.pushButton_control_4.setObjectName(u"pushButton_control_4")
-        self.pushButton_control_4.setMinimumSize(QSize(74, 86))
-        self.pushButton_control_4.setStyleSheet(u"            #pushButton_control {\n"
+        self.pushButton_ready_engage = QPushButton(self.frame_24)
+        self.pushButton_ready_engage.setObjectName(u"pushButton_ready_engage")
+        self.pushButton_ready_engage.setMinimumSize(QSize(74, 86))
+        self.pushButton_ready_engage.setStyleSheet(u"            #pushButton_control {\n"
 "                background-color: rgb(93, 93, 93);\n"
 "                border-style: outset;\n"
 "                border-width: 3px;\n"
@@ -681,7 +592,7 @@ class Ui_MainWindow(object):
 "                background-color: red;\n"
 "            }")
 
-        self.verticalLayout_23.addWidget(self.pushButton_control_4)
+        self.verticalLayout_23.addWidget(self.pushButton_ready_engage)
 
         self.label_32 = QLabel(self.frame_24)
         self.label_32.setObjectName(u"label_32")
@@ -689,9 +600,9 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_23.addWidget(self.label_32)
 
-        self.toolButton_10 = QToolButton(self.frame_24)
-        self.toolButton_10.setObjectName(u"toolButton_10")
-        self.toolButton_10.setStyleSheet(u"            #toolButton {\n"
+        self.toolButton_ahead = QToolButton(self.frame_24)
+        self.toolButton_ahead.setObjectName(u"toolButton_ahead")
+        self.toolButton_ahead.setStyleSheet(u"            #toolButton {\n"
 "                background-color: rgb(93, 93, 93);\n"
 "                border-style: outset;\n"
 "                border-width: 3px;\n"
@@ -701,10 +612,10 @@ class Ui_MainWindow(object):
 "            #toolButton:pressed {\n"
 "                background-color: red;\n"
 "            }")
-        self.toolButton_10.setIcon(icon)
-        self.toolButton_10.setIconSize(QSize(512, 512))
+        self.toolButton_ahead.setIcon(icon)
+        self.toolButton_ahead.setIconSize(QSize(512, 512))
 
-        self.verticalLayout_23.addWidget(self.toolButton_10)
+        self.verticalLayout_23.addWidget(self.toolButton_ahead)
 
         self.label_34 = QLabel(self.frame_24)
         self.label_34.setObjectName(u"label_34")
@@ -712,9 +623,9 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_23.addWidget(self.label_34)
 
-        self.toolButton_12 = QToolButton(self.frame_24)
-        self.toolButton_12.setObjectName(u"toolButton_12")
-        self.toolButton_12.setStyleSheet(u"            #toolButton {\n"
+        self.toolButton_neurtal = QToolButton(self.frame_24)
+        self.toolButton_neurtal.setObjectName(u"toolButton_neurtal")
+        self.toolButton_neurtal.setStyleSheet(u"            #toolButton {\n"
 "                background-color: rgb(93, 93, 93);\n"
 "                border-style: outset;\n"
 "                border-width: 3px;\n"
@@ -724,10 +635,10 @@ class Ui_MainWindow(object):
 "            #toolButton:pressed {\n"
 "                background-color: red;\n"
 "            }")
-        self.toolButton_12.setIcon(icon)
-        self.toolButton_12.setIconSize(QSize(512, 512))
+        self.toolButton_neurtal.setIcon(icon)
+        self.toolButton_neurtal.setIconSize(QSize(512, 512))
 
-        self.verticalLayout_23.addWidget(self.toolButton_12)
+        self.verticalLayout_23.addWidget(self.toolButton_neurtal)
 
         self.label_36 = QLabel(self.frame_24)
         self.label_36.setObjectName(u"label_36")
@@ -735,9 +646,9 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_23.addWidget(self.label_36)
 
-        self.toolButton_14 = QToolButton(self.frame_24)
-        self.toolButton_14.setObjectName(u"toolButton_14")
-        self.toolButton_14.setStyleSheet(u"            #toolButton {\n"
+        self.toolButton_astern = QToolButton(self.frame_24)
+        self.toolButton_astern.setObjectName(u"toolButton_astern")
+        self.toolButton_astern.setStyleSheet(u"            #toolButton {\n"
 "                background-color: rgb(93, 93, 93);\n"
 "                border-style: outset;\n"
 "                border-width: 3px;\n"
@@ -747,10 +658,10 @@ class Ui_MainWindow(object):
 "            #toolButton:pressed {\n"
 "                background-color: red;\n"
 "            }")
-        self.toolButton_14.setIcon(icon)
-        self.toolButton_14.setIconSize(QSize(512, 512))
+        self.toolButton_astern.setIcon(icon)
+        self.toolButton_astern.setIconSize(QSize(512, 512))
 
-        self.verticalLayout_23.addWidget(self.toolButton_14)
+        self.verticalLayout_23.addWidget(self.toolButton_astern)
 
         self.label_38 = QLabel(self.frame_24)
         self.label_38.setObjectName(u"label_38")
@@ -768,10 +679,10 @@ class Ui_MainWindow(object):
         self.frame_25.setFrameShadow(QFrame.Raised)
         self.verticalLayout_24 = QVBoxLayout(self.frame_25)
         self.verticalLayout_24.setObjectName(u"verticalLayout_24")
-        self.pushButton_control_5 = QPushButton(self.frame_25)
-        self.pushButton_control_5.setObjectName(u"pushButton_control_5")
-        self.pushButton_control_5.setMinimumSize(QSize(74, 86))
-        self.pushButton_control_5.setStyleSheet(u"            #pushButton_control {\n"
+        self.pushButton_ready_start = QPushButton(self.frame_25)
+        self.pushButton_ready_start.setObjectName(u"pushButton_ready_start")
+        self.pushButton_ready_start.setMinimumSize(QSize(74, 86))
+        self.pushButton_ready_start.setStyleSheet(u"            #pushButton_control {\n"
 "                background-color: rgb(93, 93, 93);\n"
 "                border-style: outset;\n"
 "                border-width: 3px;\n"
@@ -782,7 +693,7 @@ class Ui_MainWindow(object):
 "                background-color: red;\n"
 "            }")
 
-        self.verticalLayout_24.addWidget(self.pushButton_control_5)
+        self.verticalLayout_24.addWidget(self.pushButton_ready_start)
 
         self.label_33 = QLabel(self.frame_25)
         self.label_33.setObjectName(u"label_33")
@@ -790,9 +701,9 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_24.addWidget(self.label_33)
 
-        self.toolButton_11 = QToolButton(self.frame_25)
-        self.toolButton_11.setObjectName(u"toolButton_11")
-        self.toolButton_11.setStyleSheet(u"            #toolButton {\n"
+        self.toolButton_start_engine = QToolButton(self.frame_25)
+        self.toolButton_start_engine.setObjectName(u"toolButton_start_engine")
+        self.toolButton_start_engine.setStyleSheet(u"            #toolButton {\n"
 "                background-color: rgb(93, 93, 93);\n"
 "                border-style: outset;\n"
 "                border-width: 3px;\n"
@@ -802,10 +713,10 @@ class Ui_MainWindow(object):
 "            #toolButton:pressed {\n"
 "                background-color: red;\n"
 "            }")
-        self.toolButton_11.setIcon(icon)
-        self.toolButton_11.setIconSize(QSize(512, 512))
+        self.toolButton_start_engine.setIcon(icon)
+        self.toolButton_start_engine.setIconSize(QSize(512, 512))
 
-        self.verticalLayout_24.addWidget(self.toolButton_11)
+        self.verticalLayout_24.addWidget(self.toolButton_start_engine)
 
         self.label_35 = QLabel(self.frame_25)
         self.label_35.setObjectName(u"label_35")
@@ -813,9 +724,9 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_24.addWidget(self.label_35)
 
-        self.toolButton_13 = QToolButton(self.frame_25)
-        self.toolButton_13.setObjectName(u"toolButton_13")
-        self.toolButton_13.setStyleSheet(u"            #toolButton {\n"
+        self.toolButton_stop_engine = QToolButton(self.frame_25)
+        self.toolButton_stop_engine.setObjectName(u"toolButton_stop_engine")
+        self.toolButton_stop_engine.setStyleSheet(u"            #toolButton {\n"
 "                background-color: rgb(93, 93, 93);\n"
 "                border-style: outset;\n"
 "                border-width: 3px;\n"
@@ -825,10 +736,10 @@ class Ui_MainWindow(object):
 "            #toolButton:pressed {\n"
 "                background-color: red;\n"
 "            }")
-        self.toolButton_13.setIcon(icon)
-        self.toolButton_13.setIconSize(QSize(512, 512))
+        self.toolButton_stop_engine.setIcon(icon)
+        self.toolButton_stop_engine.setIconSize(QSize(512, 512))
 
-        self.verticalLayout_24.addWidget(self.toolButton_13)
+        self.verticalLayout_24.addWidget(self.toolButton_stop_engine)
 
         self.label_37 = QLabel(self.frame_25)
         self.label_37.setObjectName(u"label_37")
@@ -836,9 +747,9 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_24.addWidget(self.label_37)
 
-        self.toolButton_15 = QToolButton(self.frame_25)
-        self.toolButton_15.setObjectName(u"toolButton_15")
-        self.toolButton_15.setStyleSheet(u"            #toolButton {\n"
+        self.toolButton_emergency_stop = QToolButton(self.frame_25)
+        self.toolButton_emergency_stop.setObjectName(u"toolButton_emergency_stop")
+        self.toolButton_emergency_stop.setStyleSheet(u"            #toolButton {\n"
 "                background-color: rgb(93, 93, 93);\n"
 "                border-style: outset;\n"
 "                border-width: 3px;\n"
@@ -848,14 +759,15 @@ class Ui_MainWindow(object):
 "            #toolButton:pressed {\n"
 "                background-color: red;\n"
 "            }")
-        self.toolButton_15.setIcon(icon)
-        self.toolButton_15.setIconSize(QSize(512, 512))
+        self.toolButton_emergency_stop.setIcon(icon)
+        self.toolButton_emergency_stop.setIconSize(QSize(512, 512))
 
-        self.verticalLayout_24.addWidget(self.toolButton_15)
+        self.verticalLayout_24.addWidget(self.toolButton_emergency_stop)
 
         self.label_39 = QLabel(self.frame_25)
         self.label_39.setObjectName(u"label_39")
-        self.label_39.setMaximumSize(QSize(16777215, 14))
+        self.label_39.setMaximumSize(QSize(16777215, 33))
+        self.label_39.setWordWrap(True)
 
         self.verticalLayout_24.addWidget(self.label_39)
 
@@ -2590,7 +2502,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
         self.stackedWidget_bar.setCurrentIndex(1)
 
 
@@ -2620,38 +2532,37 @@ class Ui_MainWindow(object):
         self.label_26.setText(QCoreApplication.translate("MainWindow", u"MCR", None))
         self.toolButton_bridge.setText(QCoreApplication.translate("MainWindow", u"...", None))
         self.label_27.setText(QCoreApplication.translate("MainWindow", u"Bridge", None))
-        self.pushButton_control.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
-        self.label_20.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.pushButton_control_2.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
-        self.label_21.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.toolButton.setText(QCoreApplication.translate("MainWindow", u"...", None))
-        self.label_22.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.toolButton_2.setText(QCoreApplication.translate("MainWindow", u"...", None))
-        self.label_23.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.toolButton_7.setText(QCoreApplication.translate("MainWindow", u"...", None))
-        self.label_28.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.pushButton_control_3.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
-        self.label_31.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.toolButton_8.setText(QCoreApplication.translate("MainWindow", u"...", None))
-        self.label_29.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.toolButton_9.setText(QCoreApplication.translate("MainWindow", u"...", None))
-        self.label_30.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.pushButton_control_4.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
-        self.label_32.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.toolButton_10.setText(QCoreApplication.translate("MainWindow", u"...", None))
-        self.label_34.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.toolButton_12.setText(QCoreApplication.translate("MainWindow", u"...", None))
-        self.label_36.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.toolButton_14.setText(QCoreApplication.translate("MainWindow", u"...", None))
-        self.label_38.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.pushButton_control_5.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
-        self.label_33.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.toolButton_11.setText(QCoreApplication.translate("MainWindow", u"...", None))
-        self.label_35.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.toolButton_13.setText(QCoreApplication.translate("MainWindow", u"...", None))
-        self.label_37.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.toolButton_15.setText(QCoreApplication.translate("MainWindow", u"...", None))
-        self.label_39.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.pushButton_control.setText("")
+        self.label_20.setText(QCoreApplication.translate("MainWindow", u"Control", None))
+        self.pushButton_speedreduced.setText("")
+        self.label_21.setText(QCoreApplication.translate("MainWindow", u"Speed Reduced", None))
+        self.toolButton_increase_speed.setText(QCoreApplication.translate("MainWindow", u"...", None))
+        self.label_22.setText(QCoreApplication.translate("MainWindow", u"Increase Speed(+)", None))
+        self.toolButton_decrease_speed.setText(QCoreApplication.translate("MainWindow", u"...", None))
+        self.label_23.setText(QCoreApplication.translate("MainWindow", u"Decrease Speed(-)", None))
+        self.label_13.setText("")
+        self.pushButton_failed.setText("")
+        self.label_31.setText(QCoreApplication.translate("MainWindow", u"            Failed", None))
+        self.toolButton_fault_ack.setText(QCoreApplication.translate("MainWindow", u"...", None))
+        self.label_29.setText(QCoreApplication.translate("MainWindow", u"Fault Ack", None))
+        self.toolButton_fault_reset.setText(QCoreApplication.translate("MainWindow", u"...", None))
+        self.label_30.setText(QCoreApplication.translate("MainWindow", u"Fault Reset", None))
+        self.pushButton_ready_engage.setText("")
+        self.label_32.setText(QCoreApplication.translate("MainWindow", u"Ready For Engage", None))
+        self.toolButton_ahead.setText(QCoreApplication.translate("MainWindow", u"...", None))
+        self.label_34.setText(QCoreApplication.translate("MainWindow", u"Ahead", None))
+        self.toolButton_neurtal.setText(QCoreApplication.translate("MainWindow", u"...", None))
+        self.label_36.setText(QCoreApplication.translate("MainWindow", u"Neurtal", None))
+        self.toolButton_astern.setText(QCoreApplication.translate("MainWindow", u"...", None))
+        self.label_38.setText(QCoreApplication.translate("MainWindow", u"Astern", None))
+        self.pushButton_ready_start.setText("")
+        self.label_33.setText(QCoreApplication.translate("MainWindow", u"Ready For Start", None))
+        self.toolButton_start_engine.setText(QCoreApplication.translate("MainWindow", u"...", None))
+        self.label_35.setText(QCoreApplication.translate("MainWindow", u"Start Engine", None))
+        self.toolButton_stop_engine.setText(QCoreApplication.translate("MainWindow", u"...", None))
+        self.label_37.setText(QCoreApplication.translate("MainWindow", u"Stop Engine", None))
+        self.toolButton_emergency_stop.setText(QCoreApplication.translate("MainWindow", u"...", None))
+        self.label_39.setText(QCoreApplication.translate("MainWindow", u"Emergency stop Engine", None))
         self.label_100.setText(QCoreApplication.translate("MainWindow", u"100 -", None))
         self.label_101.setText(QCoreApplication.translate("MainWindow", u"200 -", None))
         self.label_102.setText(QCoreApplication.translate("MainWindow", u"300 -", None))

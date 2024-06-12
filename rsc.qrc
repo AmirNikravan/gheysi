@@ -6,5 +6,6 @@
         <file>icons/icons8-power-off-button-64.png</file>
         <file>icons/icons8-forward-64.png</file>
         <file>icons/icons8-back-64.png</file>
+        <file>icons/start.png</file>
     </qresource>
 </RCC>
