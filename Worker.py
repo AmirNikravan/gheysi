@@ -1,6 +1,6 @@
 # This Python file uses the following encoding: utf-8
 import random
-from PySide6.QtCore import QThread, Signal, QTimer
+from PySide6.QtCore import QThread, Signal
 # from ui_form import Ui_MainWindow
 
 class Worker(QThread):

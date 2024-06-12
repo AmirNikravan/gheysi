@@ -22,26 +22,11 @@ class MainWindow(QMainWindow):
         self.ui.toolButton_p3b.clicked.connect(lambda: self.change_bar_page('before'))
         self.ui.toolButton_p3f.clicked.connect(lambda: self.change_bar_page('forward'))
         #thread
-        self.buttons = []
-        self.threads = []
-
-        for i in range(1, 11):
-            button = central_widget.findChild(QToolButton, f"button{i}")
-            button.clicked.connect(lambda checked, idx=i: self.on_button_clicked(idx))
-            self.buttons.append(button)
-
-            thread = Worker()
-            thread.bar_val.connect(self.update_bar)
-            thread.gauge_val.connect(self.update_gauge)
-            self.threads.append(thread)
-            thread.start()
-        # self.thread = Worker()
-        # self.thread.gauge_val.connect(self.update_gauges)
-        # self.thread.bar_val.connect(self.update_bars)
-        # self.desgin_gauge()
-        # self.start_thread()
-    def on_button_clicked(self, button_id):
-        print(f"Button {button_id} clicked.")
+        self.thread = Worker()
+        self.thread.gauge_val.connect(self.update_gauges)
+        self.thread.bar_val.connect(self.update_bars)
+        self.desgin_gauge()
+        self.start_thread()
     def desgin_gauge(self):
         self.ui.gauge_seawater.minValue = 0
         self.ui.gauge_seawater.maxValue = 120
