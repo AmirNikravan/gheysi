@@ -25,9 +25,41 @@ class MainWindow(QMainWindow):
         self.thread = Worker()
         self.thread.gauge_val.connect(self.update_gauges)
         self.thread.bar_val.connect(self.update_bars)
+        self.desgin_gauge()
         self.start_thread()
     def desgin_gauge(self):
-        pass
+        self.ui.gauge_seawater.minValue = 0
+        self.ui.gauge_seawater.maxValue = 120
+        self.ui.gauge_oil.minValue = 0
+        self.ui.gauge_oil.maxValue = 120
+        self.ui.gauge_fw_af.minValue =0
+        self.ui.gauge_fw_be.minValue = 0
+        self.ui.gauge_fw_af.maxValue = 120
+        self.ui.gauge_fw_be.maxValue = 120
+        self.ui.gauge_exhuast_a.minValue = 0
+        self.ui.gauge_exhuast_b.minValue = 0
+        self.ui.gauge_exhuast_a.maxValue = 1200
+        self.ui.gauge_exhuast_b.maxValue = 1200
+        self.ui.gauge_cooler_a.minValue = 0
+        self.ui.gauge_cooler_b.minValue = 0
+        self.ui.gauge_cooler_a.maxValue = 120
+        self.ui.gauge_cooler_b.maxValue = 120
+        self.ui.gauge_airboost.units = 'bar'
+        self.ui.gauge_airboost.minValue = 0
+        self.ui.gauge_airboost.maxValue = 4
+        self.ui.gauge_airboost.scalaCount = 1
+        self.ui.gauge_exhuast_a.setMouseTracking(False)
+        self.ui.gauge_exhuast_b.setMouseTracking(False)
+        self.ui.gauge_cooler_a.setMouseTracking(False)
+        self.ui.gauge_cooler_b.setMouseTracking(False)
+        self.ui.gauge_fw_be.setMouseTracking(False)
+        self.ui.gauge_fw_af.setMouseTracking(False)
+        self.ui.gauge_oil.setMouseTracking(False)
+        self.ui.gauge_airboost.setMouseTracking(False)
+        self.ui.gauge_fuel.setMouseTracking(False)
+        self.ui.gauge_seawater.setMouseTracking(False)
+        # pass
+        # self.ui.gauge_exhuast_b.units = ' celsius'
     def update_gauges(self, val):
         # print(val)
         self.ui.gauge_exhuast_a.value = val['banka_exhuast']

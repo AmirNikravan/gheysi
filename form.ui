@@ -33,7 +33,7 @@
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(39, 51, 109);</string>
+       <string notr="true">background-color: rgb(184, 170, 169);</string>
       </property>
       <property name="currentIndex">
        <number>0</number>
@@ -126,7 +126,7 @@
              <property name="maximumSize">
               <size>
                <width>16777215</width>
-               <height>9</height>
+               <height>12</height>
               </size>
              </property>
              <property name="text">
@@ -223,7 +223,7 @@
              <property name="maximumSize">
               <size>
                <width>16777215</width>
-               <height>9</height>
+               <height>12</height>
               </size>
              </property>
              <property name="text">
@@ -317,10 +317,16 @@
            </item>
            <item>
             <widget class="QLabel" name="label_10">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
              <property name="maximumSize">
               <size>
                <width>16777215</width>
-               <height>9</height>
+               <height>12</height>
               </size>
              </property>
              <property name="text">

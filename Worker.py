@@ -30,12 +30,12 @@ class Worker(QThread):
             'bankb_exhuast' : random.randint(0,1000),
             'banka_cooler' : random.randint(0,1000),
             'bankb_cooler' : random.randint(0,1000),
-            'fresh_water_before' : random.randint(0,1000),
-            'fresh_water_after' : random.randint(0,1000),
-            'oil' : random.randint(0,1000),
+            'fresh_water_before' : random.randint(0,120),
+            'fresh_water_after' : random.randint(0,120),
+            'oil' : random.randint(0,120),
             'fuel' : random.randint(0,1000),
-            'airboost' : random.randint(0,1000),
-            'seawater' : random.randint(0,10000)
+            'airboost' : random.randint(0,4),
+            'seawater' : random.randint(0,120)
             }
             self.bar_val.emit(bar)
             self.gauge_val.emit(gauge)

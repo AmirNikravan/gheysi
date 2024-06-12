@@ -38,7 +38,7 @@ class Ui_MainWindow(object):
         self.stackedWidget.setObjectName(u"stackedWidget")
         self.stackedWidget.setMaximumSize(QSize(16777215, 16777215))
         self.stackedWidget.setSizeIncrement(QSize(0, 0))
-        self.stackedWidget.setStyleSheet(u"background-color: rgb(39, 51, 109);")
+        self.stackedWidget.setStyleSheet(u"background-color: rgb(184, 170, 169);")
         self.gauges = QWidget()
         self.gauges.setObjectName(u"gauges")
         self.gridLayout = QGridLayout(self.gauges)
@@ -98,7 +98,7 @@ class Ui_MainWindow(object):
 
         self.label_4 = QLabel(self.frame_3)
         self.label_4.setObjectName(u"label_4")
-        self.label_4.setMaximumSize(QSize(16777215, 9))
+        self.label_4.setMaximumSize(QSize(16777215, 12))
 
         self.verticalLayout_4.addWidget(self.label_4)
 
@@ -160,7 +160,7 @@ class Ui_MainWindow(object):
 
         self.label_7 = QLabel(self.frame_5)
         self.label_7.setObjectName(u"label_7")
-        self.label_7.setMaximumSize(QSize(16777215, 9))
+        self.label_7.setMaximumSize(QSize(16777215, 12))
 
         self.verticalLayout_5.addWidget(self.label_7)
 
@@ -222,7 +222,8 @@ class Ui_MainWindow(object):
 
         self.label_10 = QLabel(self.frame_8)
         self.label_10.setObjectName(u"label_10")
-        self.label_10.setMaximumSize(QSize(16777215, 9))
+        self.label_10.setMinimumSize(QSize(0, 0))
+        self.label_10.setMaximumSize(QSize(16777215, 12))
 
         self.verticalLayout_8.addWidget(self.label_10)
 
