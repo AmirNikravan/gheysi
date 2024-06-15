@@ -15,7 +15,7 @@ class ArduinoSerial:
 
                     # Assuming the Arduino sends data in a comma-separated format
                     data_list = data.split(',')
-                    if len(data_list) == 14:
+                    if len(data_list) == 24:
                         # Store integers in a dictionary with keys from 1 to 14
                         self.data_dict = {f"number_{i+1}": int(data_list[i]) for i in range(14)}
                         # print(f'Stored data in dictionary: {self.data_dict}')

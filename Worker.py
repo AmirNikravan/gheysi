@@ -14,7 +14,7 @@ class Worker(QThread):
 
     def run(self):
         while True:
-            self.msleep(1000)
+            self.msleep(100)
             data = self.arduino_serial.receive()
             if data:
                 self.received_data.extend(data.values())  # Append the list of numbers directly

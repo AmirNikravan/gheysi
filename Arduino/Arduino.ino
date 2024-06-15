@@ -30,5 +30,5 @@ void loop() {
   }
   Serial.println(); // Newline to indicate end of transmission
 
-  delay(2000); // Delay for 2 seconds before repeating
+  delay(100); // Delay for 2 seconds before repeating
 }
