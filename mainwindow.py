@@ -1,11 +1,11 @@
 # This Python file uses the following encoding: utf-8
 import sys
-import random
 from PySide6.QtWidgets import QApplication, QMainWindow
-from PySide6.QtCore import QThread, Signal, QTimer
+
+from PySide6.QtCore import QThread, Signal, Slot
 
 from ui_form import Ui_MainWindow
-from Worker import Worker
+from Worker import Worker ,ButtonWorker
 
 class MainWindow(QMainWindow):
     def __init__(self, parent=None):
@@ -22,26 +22,43 @@ class MainWindow(QMainWindow):
         self.ui.toolButton_p3b.clicked.connect(lambda: self.change_bar_page('before'))
         self.ui.toolButton_p3f.clicked.connect(lambda: self.change_bar_page('forward'))
         #thread
-        self.buttons = []
-        self.threads = []
+        self.thread = Worker()
+        self.thread.gauge_val.connect(self.update_gauges)
+        self.thread.bar_val.connect(self.update_bars)
+        self.desgin_gauge()
+        self.start_thread()
 
-        for i in range(1, 11):
-            button = central_widget.findChild(QToolButton, f"button{i}")
-            button.clicked.connect(lambda checked, idx=i: self.on_button_clicked(idx))
-            self.buttons.append(button)
+        self.ui.toolButton_lamptest.clicked.connect(self.create_button_handler("lamptest"))
+        self.ui.toolButton_lop.clicked.connect(self.create_button_handler("lop"))
+        self.ui.toolButton_mcr.clicked.connect(self.create_button_handler("mcr"))
+        self.ui.toolButton_bridge.clicked.connect(self.create_button_handler("bridge"))
+        self.ui.toolButton_ahead.clicked.connect(self.create_button_handler("ahead"))
+        self.ui.toolButton_astern.clicked.connect(self.create_button_handler("astern"))
+        self.ui.toolButton_decrease_speed.clicked.connect(self.create_button_handler("decrease_speed"))
+        self.ui.toolButton_down.clicked.connect(self.create_button_handler("down"))
+        self.ui.toolButton_emergency_stop.clicked.connect(self.create_button_handler("emergency_stop"))
+        self.ui.toolButton_fault_ack.clicked.connect(self.create_button_handler("fault_ack"))
+        self.ui.toolButton_fault_reset.clicked.connect(self.create_button_handler("fault_reset"))
+        self.ui.toolButton_increase_speed.clicked.connect(self.create_button_handler("increase_speed"))
+        self.ui.toolButton_neurtal.clicked.connect(self.create_button_handler("neutral"))
+        self.ui.toolButton_start_engine.clicked.connect(self.create_button_handler("start"))
+        self.ui.toolButton_stop_engine.clicked.connect(self.create_button_handler("stop"))
+        # Add more tool buttons and connect them as needed
 
-            thread = Worker()
-            thread.bar_val.connect(self.update_bar)
-            thread.gauge_val.connect(self.update_gauge)
-            self.threads.append(thread)
-            thread.start()
-        # self.thread = Worker()
-        # self.thread.gauge_val.connect(self.update_gauges)
-        # self.thread.bar_val.connect(self.update_bars)
-        # self.desgin_gauge()
-        # self.start_thread()
-    def on_button_clicked(self, button_id):
-        print(f"Button {button_id} clicked.")
+    def create_button_handler(self, button_name):
+        @Slot()
+        def handler():
+            self.handle_button_click(button_name)
+        return handler
+
+    def handle_button_click(self, button_name):
+        self.button_worker = ButtonWorker(button_name)
+        self.button_worker.clicked.connect(self.on_button_clicked)
+        self.button_worker.start()
+
+    @Slot(str)
+    def on_button_clicked(self, button_name):
+        print(f'ToolButton {button_name} clicked')
     def desgin_gauge(self):
         self.ui.gauge_seawater.minValue = 0
         self.ui.gauge_seawater.maxValue = 120

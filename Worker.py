@@ -39,5 +39,15 @@ class Worker(QThread):
             }
             self.bar_val.emit(bar)
             self.gauge_val.emit(gauge)
+class ButtonWorker(QThread):
+    clicked = Signal(str)
 
+    def __init__(self, button_name):
+        super().__init__()
+        self.button_name = button_name
+
+    def run(self):
+        # Simulate a long-running task
+        self.msleep(200)
+        self.clicked.emit(self.button_name)
 
