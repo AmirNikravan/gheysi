@@ -22,9 +22,9 @@ void loop() {
   }
 
   // Send all 14 numbers as a single comma-separated string
-  for (int i = 0; i < 14; ++i) {
+  for (int i = 0; i < 24; ++i) {
     Serial.print(randomNumbers[i]);
-    if (i < 13) {
+    if (i < 23) {
       Serial.print(","); // Add comma between numbers
     }
   }

@@ -18,9 +18,9 @@ class Worker(QThread):
             data = self.arduino_serial.receive()
             if data:
                 self.received_data.extend(data.values())  # Append the list of numbers directly
-                if len(self.received_data) >= 14:
+                if len(self.received_data) >= 24:
                     # Ensure we only take the first 14 numbers
-                    self.received_data = self.received_data[:14]
+                    self.received_data = self.received_data[:24]
                     bar = {
                         'sea_water_pressure': self.received_data[0],
                         'oil_pressure': self.received_data[1],
@@ -38,16 +38,16 @@ class Worker(QThread):
                         'fuel_rack_position': self.received_data[13],
                     }
                     gauge = {
-                        'banka_exhaust': random.randint(0, 1000),
-                        'bankb_exhaust': random.randint(0, 1000),
-                        'banka_cooler': random.randint(0, 1000),
-                        'bankb_cooler': random.randint(0, 1000),
-                        'fresh_water_before': random.randint(0, 120),
-                        'fresh_water_after': random.randint(0, 120),
-                        'oil': random.randint(0, 120),
-                        'fuel': random.randint(0, 1000),
-                        'airboost': random.randint(0, 4),
-                        'seawater': random.randint(0, 120)
+                        'banka_exhaust': self.received_data[14],
+                        'bankb_exhaust': self.received_data[15],
+                        'banka_cooler': self.received_data[16],
+                        'bankb_cooler': self.received_data[17],
+                        'fresh_water_before': self.received_data[18],
+                        'fresh_water_after': self.received_data[19],
+                        'oil': self.received_data[20],
+                        'fuel': self.received_data[21],
+                        'airboost': self.received_data[22],
+                        'seawater': self.received_data[23]
                     }
                     self.bar_val.emit(bar)
                     self.gauge_val.emit(gauge)
