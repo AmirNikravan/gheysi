@@ -48,6 +48,6 @@ class ButtonWorker(QThread):
 
     def run(self):
         # Simulate a long-running task
-        self.msleep(200)
+        self.msleep(1)
         self.clicked.emit(self.button_name)
 

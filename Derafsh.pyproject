@@ -4,6 +4,7 @@
         "form.ui",
         "AnalogGaugeWidget.py",
         "rsc.qrc",
-        "Worker.py"
+        "Worker.py",
+        "Arduino.py"
     ]
 }

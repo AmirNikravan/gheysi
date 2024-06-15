@@ -6,7 +6,7 @@ from PySide6.QtCore import QThread, Signal, Slot
 
 from ui_form import Ui_MainWindow
 from Worker import Worker ,ButtonWorker
-
+from Arduino import ArduinoSerial
 class MainWindow(QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -27,7 +27,11 @@ class MainWindow(QMainWindow):
         self.thread.bar_val.connect(self.update_bars)
         self.desgin_gauge()
         self.start_thread()
+        arduino_serial = ArduinoSerial()
+        received_data = arduino_serial.receive()
+        arduino_serial.close()
 
+        print(received_data)  # Print the received dictionary
         self.ui.toolButton_lamptest.clicked.connect(self.create_button_handler("lamptest"))
         self.ui.toolButton_lop.clicked.connect(self.create_button_handler("lop"))
         self.ui.toolButton_mcr.clicked.connect(self.create_button_handler("mcr"))
@@ -35,7 +39,7 @@ class MainWindow(QMainWindow):
         self.ui.toolButton_ahead.clicked.connect(self.create_button_handler("ahead"))
         self.ui.toolButton_astern.clicked.connect(self.create_button_handler("astern"))
         self.ui.toolButton_decrease_speed.clicked.connect(self.create_button_handler("decrease_speed"))
-        self.ui.toolButton_down.clicked.connect(self.create_button_handler("down"))
+        # self.ui.toolButton_down.clicked.connect(self.create_button_handler("down"))
         self.ui.toolButton_emergency_stop.clicked.connect(self.create_button_handler("emergency_stop"))
         self.ui.toolButton_fault_ack.clicked.connect(self.create_button_handler("fault_ack"))
         self.ui.toolButton_fault_reset.clicked.connect(self.create_button_handler("fault_reset"))
