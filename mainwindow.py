@@ -22,16 +22,12 @@ class MainWindow(QMainWindow):
         self.ui.toolButton_p3b.clicked.connect(lambda: self.change_bar_page('before'))
         self.ui.toolButton_p3f.clicked.connect(lambda: self.change_bar_page('forward'))
         #thread
-        self.thread = Worker()
-        self.thread.gauge_val.connect(self.update_gauges)
+        self.arduino_serial = ArduinoSerial()
+        self.thread = Worker(self.arduino_serial)
         self.thread.bar_val.connect(self.update_bars)
+        self.thread.gauge_val.connect(self.update_gauges)
+        self.thread.start()
         self.desgin_gauge()
-        self.start_thread()
-        arduino_serial = ArduinoSerial()
-        received_data = arduino_serial.receive()
-        arduino_serial.close()
-
-        print(received_data)  # Print the received dictionary
         self.ui.toolButton_lamptest.clicked.connect(self.create_button_handler("lamptest"))
         self.ui.toolButton_lop.clicked.connect(self.create_button_handler("lop"))
         self.ui.toolButton_mcr.clicked.connect(self.create_button_handler("mcr"))
@@ -97,9 +93,8 @@ class MainWindow(QMainWindow):
         # pass
         # self.ui.gauge_exhuast_b.units = ' celsius'
     def update_gauges(self, val):
-        # print(val)
-        self.ui.gauge_exhuast_a.value = val['banka_exhuast']
-        self.ui.gauge_exhuast_b.value = val['bankb_exhuast']
+        self.ui.gauge_exhuast_a.value = val['banka_exhaust']
+        self.ui.gauge_exhuast_b.value = val['bankb_exhaust']
         self.ui.gauge_cooler_a.value = val['banka_cooler']
         self.ui.gauge_cooler_b.value = val['bankb_cooler']
         self.ui.gauge_fw_be.value = val['fresh_water_before']
@@ -119,35 +114,48 @@ class MainWindow(QMainWindow):
         self.ui.gauge_airboost.repaint()
         self.ui.gauge_fuel.repaint()
         self.ui.gauge_seawater.repaint()
-    def update_bars(self,val):
-        self.ui.sea_water_pressure_bar.setValue(val['sea_water_pressure'])
-        self.ui.lcdNumber_sea_water_pressure_bar.display(val['sea_water_pressure'])
-        self.ui.oil_pressuer_bar.setValue(val['oil_pressure'])
-        self.ui.lcdNumber_oil_pressuer_bar.display(val['oil_pressure'])
-        self.ui.fuel_pressure_bar.setValue(val['fuel_pressure'])
-        self.ui.lcdNumber_fuel_pressure_bar.display(val['fuel_pressure'])
-        self.ui.air_boost_pressure_bar.setValue(val['air_boost_pressure'])
-        self.ui.lcdNumber_air_boost_pressure_bar.display(val['air_boost_pressure'])
-        self.ui.speed_bar.setValue(val['speed'])
-        self.ui.lcdNumber_speed_bar.display(val['speed'])
-        self.ui.exhuast_temp_abar.setValue(val['exhuast_temperature_a'])
-        self.ui.lcdNumber_exhuast_temp_abar.display(val['exhuast_temperature_b'])
-        self.ui.exhaust_temp_bbar.setValue(val['exhuast_temperature_a'])
-        self.ui.lcdNumber_exhaust_temp_bbar.display(val['exhuast_temperature_b'])
-        self.ui.air_temp_afbar.setValue(val['air_temp_after'])
-        self.ui.lcdNumber_air_temp_afbar.display(val['air_temp_after'])
-        self.ui.air_temp_bebar.setValue(val['air_temp_before'])
-        self.ui.lcdNumber_air_temp_bebar.display(val['air_temp_before'])
-        self.ui.sea_water_tempbar.setValue(val['sea_water_temperature'])
-        self.ui.lcdNumber_sea_water_tempbar.display(val['sea_water_temperature'])
-        self.ui.oil_temperessure_bar.setValue(val['oil_temperature'])
-        self.ui.lcdNumber_oil_temperessure_bar.display(val['oil_temperature'])
-        self.ui.water_temp_bebar.setValue(val['fresh_water_temp_after'])
-        self.ui.lcdNumber_water_temp_bebar.display(val['fresh_water_temp_after'])
-        self.ui.water_temp_afbar.setValue(val['fresh_water_temp_before'])
-        self.ui.lcdNumber_water_temp_afbar.display(val['fresh_water_temp_before'])
-        self.ui.fuel_rack_posbar.setValue(val['fuel_rack_position'])
-        self.ui.lcdNumber_fuel_rack_posbar.display(val['fuel_rack_position'])
+    def update_bars(self, val):
+        self.ui.sea_water_pressure_bar.setValue(int(val['sea_water_pressure']))
+        self.ui.lcdNumber_sea_water_pressure_bar.display(int(val['sea_water_pressure']))
+        
+        self.ui.oil_pressuer_bar.setValue(int(val['oil_pressure']))
+        self.ui.lcdNumber_oil_pressuer_bar.display(int(val['oil_pressure']))
+        
+        self.ui.fuel_pressure_bar.setValue(int(val['fuel_pressure']))
+        self.ui.lcdNumber_fuel_pressure_bar.display(int(val['fuel_pressure']))
+        
+        self.ui.air_boost_pressure_bar.setValue(int(val['air_boost_pressure']))
+        self.ui.lcdNumber_air_boost_pressure_bar.display(int(val['air_boost_pressure']))
+        
+        self.ui.speed_bar.setValue(int(val['speed']))
+        self.ui.lcdNumber_speed_bar.display(int(val['speed']))
+        
+        self.ui.exhuast_temp_abar.setValue(int(val['exhaust_temperature_a']))
+        self.ui.lcdNumber_exhuast_temp_abar.display(int(val['exhaust_temperature_a']))
+        
+        self.ui.exhaust_temp_bbar.setValue(int(val['exhaust_temperature_b']))
+        self.ui.lcdNumber_exhaust_temp_bbar.display(int(val['exhaust_temperature_b']))
+        
+        self.ui.air_temp_afbar.setValue(int(val['air_temp_after']))
+        self.ui.lcdNumber_air_temp_afbar.display(int(val['air_temp_after']))
+        
+        self.ui.air_temp_bebar.setValue(int(val['air_temp_before']))
+        self.ui.lcdNumber_air_temp_bebar.display(int(val['air_temp_before']))
+        
+        self.ui.sea_water_tempbar.setValue(int(val['sea_water_temperature']))
+        self.ui.lcdNumber_sea_water_tempbar.display(int(val['sea_water_temperature']))
+        
+        self.ui.oil_temperessure_bar.setValue(int(val['oil_temperature']))
+        self.ui.lcdNumber_oil_temperessure_bar.display(int(val['oil_temperature']))
+        
+        self.ui.water_temp_bebar.setValue(int(val['fresh_water_temp_after']))
+        self.ui.lcdNumber_water_temp_bebar.display(int(val['fresh_water_temp_after']))
+        
+        self.ui.water_temp_afbar.setValue(int(val['fresh_water_temp_before']))
+        self.ui.lcdNumber_water_temp_afbar.display(int(val['fresh_water_temp_before']))
+        
+        self.ui.fuel_rack_posbar.setValue(int(val['fuel_rack_position']))
+        self.ui.lcdNumber_fuel_rack_posbar.display(int(val['fuel_rack_position']))
 
 
 
