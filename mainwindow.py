@@ -14,7 +14,8 @@ class MainWindow(QMainWindow):
         super().__init__(parent)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.engine = Engine()
+        self.engine_name = 'Engine one'
+        self.engine = Engine(self.engine_name)
         # right side stacked widget buttons
         self.ui.toolButton_up.clicked.connect(lambda: self.change_main_page('up'))
         self.ui.toolButton_down.clicked.connect(lambda: self.change_main_page('down'))

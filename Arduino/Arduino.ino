@@ -7,7 +7,7 @@ void loop() {
   // Create sensor values
   int temperatureValues[5];
   int pressureValues[5];
-  bool keysValues[5];
+  bool keysValues[14];
   bool lampsValues[5];
   int roundsValues[5];
   int dasteValues[5];
@@ -15,19 +15,49 @@ void loop() {
   // Generate sensor values
   Temperature(temperatureValues);
   Pressure(pressureValues);
-  generateKeys(keysValues);
+  Keys(keysValues);
   Lamps(lampsValues);
   Rounds(roundsValues);
   Daste(dasteValues);
 
   // Merge sensor values into a single string
   String data = "";
+
+  // Add temperature values to data string
   for (int i = 0; i < 5; ++i) {
-    data += String(temperatureValues[i]) + "," + String(pressureValues[i]) + "," + 
-            String(keysValues[i]) + "," + String(lampsValues[i]) + "," + 
-            String(roundsValues[i]) + "," + String(dasteValues[i]);
+    data += String(temperatureValues[i]);
+    data += ",";
+  }
+
+  // Add pressure values to data string
+  for (int i = 0; i < 5; ++i) {
+    data += String(pressureValues[i]);
+    data += ",";
+  }
+
+  // Add keys values to data string
+  for (int i = 0; i < 14; ++i) {
+    data += String(keysValues[i]);
+    data += ",";
+  }
+
+  // Add lamps values to data string
+  for (int i = 0; i < 5; ++i) {
+    data += String(lampsValues[i]);
+    data += ",";
+  }
+
+  // Add rounds values to data string
+  for (int i = 0; i < 5; ++i) {
+    data += String(roundsValues[i]);
+    data += ",";
+  }
+
+  // Add daste values to data string
+  for (int i = 0; i < 5; ++i) {
+    data += String(dasteValues[i]);
     if (i < 4) {
-      data += ","; // Add comma between sets of values
+      data += ",";
     }
   }
 
@@ -51,11 +81,24 @@ void Pressure(int values[]) {
   }
 }
 
-void generateKeys(bool values[]) {
+void Keys(bool values[]) {
   // Generate random keys values (true/false)
-  for (int i = 0; i < 5; ++i) {
-    values[i] = random(0, 2); // Generate either 0 (false) or 1 (true)
-  }
+  values[0] = false;
+  values[1] = false;
+  values[2] = false;
+  values[3] = false;
+  values[4] = false;
+  values[5] = false;
+  values[6] = false;
+  values[7] = false;
+  values[8] = false;
+  values[9] = false;
+  values[10] = false;
+  values[11] = false;
+  values[12] = false;
+  values[13] = false;
+
+
 }
 
 void Lamps(bool values[]) {

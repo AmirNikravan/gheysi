@@ -22,20 +22,6 @@ class ArduinoSerial:
 
                 except Exception as e:
                     print(f'Error: {e}')
-
-    # def process_data(self, data_list):
-    #     # Split the data into respective sensor groups
-
-    #     # Assuming your Engine class has a method `update_engine`
-    #     self.engine.update_engine({
-    #         'temperatures': temperatures,
-    #         'pressures': pressures,
-    #         'keys': keys,
-    #         'lamps': lamps,
-    #         'rounds': rounds,
-    #         'daste': daste
-    #     })
-
     def send(self, data):
         try:
             self.ser.write(data.encode('utf-8'))  # Send data to Arduino
