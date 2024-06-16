@@ -6,37 +6,33 @@ void setup() {
 void loop() {
   // Create sensor values
   int temperatureValues[5];
-  Temperature(temperatureValues);
-
   int pressureValues[5];
-  Pressure(pressureValues);
-
   bool keysValues[5];
-  generateKeys(keysValues);
-
   bool lampsValues[5];
-  Lamps(lampsValues);
-
   int roundsValues[5];
-  Rounds(roundsValues);
-
   int dasteValues[5];
+
+  // Generate sensor values
+  Temperature(temperatureValues);
+  Pressure(pressureValues);
+  generateKeys(keysValues);
+  Lamps(lampsValues);
+  Rounds(roundsValues);
   Daste(dasteValues);
 
-  // Send sensor values over serial communication as a single string
-  Serial.print("temp=[");
-  printArray(temperatureValues, 5);
-  Serial.print("],press=[");
-  printArray(pressureValues, 5);
-  Serial.print("],keys=[");
-  printBooleanArray(keysValues, 5);
-  Serial.print("],lamps=[");
-  printBooleanArray(lampsValues, 5);
-  Serial.print("],rounds=[");
-  printArray(roundsValues, 5);
-  Serial.print("],daste=[");
-  printArray(dasteValues, 5);
-  Serial.println("]");
+  // Merge sensor values into a single string
+  String data = "";
+  for (int i = 0; i < 5; ++i) {
+    data += String(temperatureValues[i]) + "," + String(pressureValues[i]) + "," + 
+            String(keysValues[i]) + "," + String(lampsValues[i]) + "," + 
+            String(roundsValues[i]) + "," + String(dasteValues[i]);
+    if (i < 4) {
+      data += ","; // Add comma between sets of values
+    }
+  }
+
+  // Send data over serial
+  Serial.println(data);
 
   delay(100); // Delay for 100 milliseconds before repeating
 }
@@ -80,23 +76,5 @@ void Daste(int values[]) {
   // Generate random daste values between 0 and 100
   for (int i = 0; i < 5; ++i) {
     values[i] = random(0, 101);
-  }
-}
-
-void printArray(int values[], int length) {
-  for (int i = 0; i < length; ++i) {
-    Serial.print(values[i]);
-    if (i < length - 1) {
-      Serial.print(",");
-    }
-  }
-}
-
-void printBooleanArray(bool values[], int length) {
-  for (int i = 0; i < length; ++i) {
-    Serial.print(values[i] ? "true" : "false"); // Convert boolean to string representation
-    if (i < length - 1) {
-      Serial.print(",");
-    }
   }
 }

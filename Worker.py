@@ -9,14 +9,14 @@ class Worker(QThread):
     gauge_val = Signal(dict)
     bar_val = Signal(dict)
 
-    def __init__(self, arduino_serial):
+    def __init__(self, arduino_serial,engine):
         super().__init__()
         self.arduino_serial = arduino_serial
         self.received_data = []
         self._running = True
         self.mutex = QMutex()
         self.wait_condition = QWaitCondition()
-
+        self.engine = engine
     def run(self):
         while self._running:
             self.msleep(1000)

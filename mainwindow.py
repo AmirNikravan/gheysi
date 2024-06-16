@@ -7,14 +7,14 @@ from PySide6.QtCore import QThread, Signal, Slot
 from ui_form import Ui_MainWindow
 from Worker import *
 from Arduino import *
-
+from Engine import *
 
 class MainWindow(QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-
+        self.engine = Engine()
         # right side stacked widget buttons
         self.ui.toolButton_up.clicked.connect(lambda: self.change_main_page('up'))
         self.ui.toolButton_down.clicked.connect(lambda: self.change_main_page('down'))
@@ -26,8 +26,8 @@ class MainWindow(QMainWindow):
         self.ui.toolButton_p3f.clicked.connect(lambda: self.change_bar_page('forward'))
 
         # thread for receiving data
-        self.arduino_serial = ArduinoSerial()
-        self.thread = Worker(self.arduino_serial)
+        self.arduino_serial = ArduinoSerial(self.engine)
+        self.thread = Worker(self.arduino_serial,self.engine)
         self.thread.bar_val.connect(self.update_bars)
         self.thread.gauge_val.connect(self.update_gauges)
         self.thread.start()
