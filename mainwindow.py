@@ -171,7 +171,6 @@ class MainWindow(QMainWindow):
 
 
 
-
     def start_thread(self):
         self.thread.start()
 

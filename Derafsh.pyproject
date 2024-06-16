@@ -5,6 +5,7 @@
         "AnalogGaugeWidget.py",
         "rsc.qrc",
         "Worker.py",
-        "Arduino.py"
+        "Arduino.py",
+        "Engine.py"
     ]
 }
