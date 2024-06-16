@@ -2,7 +2,7 @@
 import sys
 from PySide6.QtWidgets import QApplication, QMainWindow
 
-from PySide6.QtCore import QThread, Signal, Slot
+from PySide6.QtCore import QThread, Signal, Slot,QTimer
 
 from ui_form import Ui_MainWindow
 from Worker import *
@@ -66,6 +66,8 @@ class MainWindow(QMainWindow):
         return handler
 
     def handle_button_click(self, button_name):
+        self.change_color(button_name)
+
         self.button_worker = ButtonWorker(button_name)
         self.button_worker.clicked.connect(self.on_button_clicked)
         self.button_worker.start()
@@ -75,6 +77,14 @@ class MainWindow(QMainWindow):
         print(f'ToolButton {button_name} clicked')
         data_to_send = f"Button {button_name} clicked!"
         self.sender.send_data(data_to_send)
+    def change_color(self, name):
+        button = None
+        if name == 'lamptest':
+            button = self.ui.toolButton_lamptest
+        
+        if button:
+            button.setStyleSheet("background-color: red;")
+            QTimer.singleShot(100, lambda: button.setStyleSheet("background-color: rgb(93, 93, 93);"))
     def desgin_gauge(self):
         self.ui.gauge_seawater.minValue = 0
         self.ui.gauge_seawater.maxValue = 120

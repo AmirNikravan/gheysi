@@ -526,9 +526,7 @@
                 border-radius: 40px;
                 border-color: rgb(232, 232, 232);
             }
-            QToolButton:pressed {
-                background-color: red;
-            }
+
             QPushButton {
                 background-color: rgb(93, 93, 93);
                 border-style: outset;

@@ -4,7 +4,7 @@ from PySide6.QtCore import QThread, Signal
 # from ui_form import Ui_MainWindow
 from Arduino import ArduinoSerial
 from PySide6.QtCore import QThread, Signal, QMutex, QWaitCondition, QObject
-
+from Server import *
 class Worker(QThread):
     gauge_val = Signal(dict)
     bar_val = Signal(dict)
@@ -20,6 +20,16 @@ class Worker(QThread):
     def run(self):
         while self._running:
             self.msleep(1000)
+            self.server = Server()
+            record = self.server.receive_data('sensors')
+            self.server.disconnect()
+            keys = record[2]['keys']
+            name = record[2]['name']
+            daste = record[2]['daste']
+            lamps = record[2]['lamps']
+            rounds = record[2]['rounds']
+            pressure = record[2]['pressure']
+            temperature = record[2]['temperature']
             data = self.arduino_serial.receive()
             if data:
                 self.received_data.extend(data.values())  # Append the list of numbers directly

@@ -16,6 +16,7 @@ class Server:
         try:
             self.connect()
             self.insert_data('sensors', datetime.datetime.now(), data)
+
         except Exception as e:
             print(f"Error collecting data: {e}")
         finally:
@@ -41,10 +42,8 @@ class Server:
         
         try:
             cursor = self.connection.cursor()
-
             # Convert dictionary_value to JSON string
             json_data = json.dumps(dictionary_value)
-
             query = f"INSERT INTO {table} (date, value) VALUES (%s, %s::jsonb)"
             cursor.execute(query, (datetime_value, json_data))
             self.connection.commit()
@@ -56,33 +55,27 @@ class Server:
 
 
 
-    def receive_data(self, query):
+    def receive_data(self, table):
+        self.connect()
+        if not self.connection:
+            raise psycopg2.OperationalError('Database connection is closed.')
+
         try:
             cursor = self.connection.cursor()
+            
+            # Modify the SQL query to select the last row ordered by a specific column
+            query = f"SELECT * FROM {table} ORDER BY id DESC LIMIT 1"
+            
             cursor.execute(query)
-            records = cursor.fetchall()
-            return records
+            record = cursor.fetchone()  # Fetch the first (and only) row
+            return record
         except Error as e:
             print(f"Error receiving data: {e}")
+            raise
+
 
     def disconnect(self):
         if self.connection:
             self.connection.close()
             print("Disconnected from the database.")
 
-# Example usage:
-# if __name__ == "__main__":
-#     try:
-#         server = Server()
-
-#         # Example of collecting data
-#         data_to_insert = {"temperature": 25, "humidity": 60}
-#         server.collect(data_to_insert)
-
-#         # Example of receiving data
-#         query = "SELECT * FROM sensors"
-#         result = server.receive_data(query)
-#         print("Received data:", result)
-
-#     except Exception as e:
-#         print(f"Error: {e}")
