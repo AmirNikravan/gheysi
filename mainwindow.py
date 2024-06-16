@@ -5,14 +5,17 @@ from PySide6.QtWidgets import QApplication, QMainWindow
 from PySide6.QtCore import QThread, Signal, Slot
 
 from ui_form import Ui_MainWindow
-from Worker import Worker ,ButtonWorker
-from Arduino import ArduinoSerial
+from Worker import *
+from Arduino import *
+
+
 class MainWindow(QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        #right sdie stacked widget buttons
+
+        # right side stacked widget buttons
         self.ui.toolButton_up.clicked.connect(lambda: self.change_main_page('up'))
         self.ui.toolButton_down.clicked.connect(lambda: self.change_main_page('down'))
         self.ui.toolButton_p1f.clicked.connect(lambda: self.change_bar_page('forward'))
@@ -21,13 +24,21 @@ class MainWindow(QMainWindow):
         self.ui.toolButton_p2f.clicked.connect(lambda: self.change_bar_page('forward'))
         self.ui.toolButton_p3b.clicked.connect(lambda: self.change_bar_page('before'))
         self.ui.toolButton_p3f.clicked.connect(lambda: self.change_bar_page('forward'))
-        #thread
+
+        # thread for receiving data
         self.arduino_serial = ArduinoSerial()
         self.thread = Worker(self.arduino_serial)
         self.thread.bar_val.connect(self.update_bars)
         self.thread.gauge_val.connect(self.update_gauges)
         self.thread.start()
+
+        # thread for sending data
+        self.sender = Sender(self.arduino_serial)
+        self.sender.start()
+
         self.desgin_gauge()
+
+        # connect tool buttons
         self.ui.toolButton_lamptest.clicked.connect(self.create_button_handler("lamptest"))
         self.ui.toolButton_lop.clicked.connect(self.create_button_handler("lop"))
         self.ui.toolButton_mcr.clicked.connect(self.create_button_handler("mcr"))
@@ -43,7 +54,6 @@ class MainWindow(QMainWindow):
         self.ui.toolButton_neurtal.clicked.connect(self.create_button_handler("neutral"))
         self.ui.toolButton_start_engine.clicked.connect(self.create_button_handler("start"))
         self.ui.toolButton_stop_engine.clicked.connect(self.create_button_handler("stop"))
-        # Add more tool buttons and connect them as needed
 
     def create_button_handler(self, button_name):
         @Slot()
@@ -59,6 +69,8 @@ class MainWindow(QMainWindow):
     @Slot(str)
     def on_button_clicked(self, button_name):
         print(f'ToolButton {button_name} clicked')
+        data_to_send = f"Button {button_name} clicked!"
+        self.sender.send_data(data_to_send)
     def desgin_gauge(self):
         self.ui.gauge_seawater.minValue = 0
         self.ui.gauge_seawater.maxValue = 120

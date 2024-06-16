@@ -6,30 +6,28 @@ class ArduinoSerial:
         self.ser.flushInput()  # Flush input buffer to start fresh
 
     def receive(self):
-        self.data_dict = {}  # Dictionary to store the received integers
+        data_dict = {}  # Dictionary to store the received integers
         while True:
             if self.ser.in_waiting > 0:
                 try:
                     data = self.ser.readline().decode('utf-8', errors='ignore').strip()  # Read and decode raw bytes from serial
-                    # print(f'Received from Arduino: {data}')
-
                     # Assuming the Arduino sends data in a comma-separated format
                     data_list = data.split(',')
                     if len(data_list) == 24:
-                        # Store integers in a dictionary with keys from 1 to 14
-                        self.data_dict = {f"number_{i+1}": int(data_list[i]) for i in range(14)}
-                        # print(f'Stored data in dictionary: {self.data_dict}')
+                        # Store integers in a dictionary with keys from 1 to 24
+                        data_dict = {f"number_{i+1}": int(data_list[i]) for i in range(24)}
+                        print(f'Stored data in dictionary: {data_dict}')
                         break  # Exit the loop after receiving and storing one complete set of data
                 except Exception as e:
-                    print(f'Errord: {e}')
-        return self.data_dict
+                    print(f'Error: {e}')
+        return data_dict
+
+    def send(self, data):
+        try:
+            self.ser.write(data.encode('utf-8'))  # Send data to Arduino
+            print(f'Sent to Arduino: {data}')
+        except Exception as e:
+            print(f'Error: {e}')
 
     def close(self):
         self.ser.close()  # Close serial port when done
-
-# Usage example:
-# arduino_serial = ArduinoSerial()
-# received_data = arduino_serial.receive()
-# arduino_serial.close()
-
-# print(received_data)  # Print the received dictionary

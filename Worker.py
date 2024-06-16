@@ -3,6 +3,8 @@ import random
 from PySide6.QtCore import QThread, Signal
 # from ui_form import Ui_MainWindow
 from Arduino import ArduinoSerial
+from PySide6.QtCore import QThread, Signal, QMutex, QWaitCondition, QObject
+
 class Worker(QThread):
     gauge_val = Signal(dict)
     bar_val = Signal(dict)
@@ -11,15 +13,17 @@ class Worker(QThread):
         super().__init__()
         self.arduino_serial = arduino_serial
         self.received_data = []
+        self._running = True
+        self.mutex = QMutex()
+        self.wait_condition = QWaitCondition()
 
     def run(self):
-        while True:
-            self.msleep(100)
+        while self._running:
+            self.msleep(1000)
             data = self.arduino_serial.receive()
             if data:
                 self.received_data.extend(data.values())  # Append the list of numbers directly
                 if len(self.received_data) >= 24:
-                    # Ensure we only take the first 14 numbers
                     self.received_data = self.received_data[:24]
                     bar = {
                         'sea_water_pressure': self.received_data[0],
@@ -52,8 +56,45 @@ class Worker(QThread):
                     self.bar_val.emit(bar)
                     self.gauge_val.emit(gauge)
                     self.received_data = []  # Reset received data for the next cycle
+
+    def stop(self):
+        self.mutex.lock()
+        self._running = False
+        self.wait_condition.wakeOne()
+        self.mutex.unlock()
+
+class Sender(QThread):
+    def __init__(self, arduino_serial):
+        super().__init__()
+        self.arduino_serial = arduino_serial
+        self.data_to_send = None
+        self._running = True
+        self.mutex = QMutex()
+        self.wait_condition = QWaitCondition()
+
+    def run(self):
+        while self._running:
+            self.mutex.lock()
+            if self.data_to_send:
+                self.arduino_serial.send(self.data_to_send)
+                self.data_to_send = None
+            self.mutex.unlock()
+            self.msleep(100)
+
+    def send_data(self, data):
+        self.mutex.lock()
+        self.data_to_send = data
+        self.wait_condition.wakeOne()
+        self.mutex.unlock()
+
+    def stop(self):
+        self.mutex.lock()
+        self._running = False
+        self.wait_condition.wakeOne()
+        self.mutex.unlock()
+
 class ButtonWorker(QThread):
-    clicked = Signal(str)
+    clicked = Signal(str)  # Define the signal
 
     def __init__(self, button_name):
         super().__init__()
@@ -62,5 +103,4 @@ class ButtonWorker(QThread):
     def run(self):
         # Simulate a long-running task
         self.msleep(1)
-        self.clicked.emit(self.button_name)
-
+        self.clicked.emit(self.button_name)  # Emit the signal
