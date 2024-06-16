@@ -1,13 +1,13 @@
 import re
 import time
-
+from Server import *
 class Engine:
     def __init__(self, name):
         self.data = {}
         self.name = name  # Initialize a name attribute
-
+        self.server = Server()
     def update_engine(self, data_list):
-        print(data_list)
+        # print(data_list)
         # Update the single dictionary with sensor data
         self.data = {
             'name': self.name,
@@ -18,9 +18,9 @@ class Engine:
             'rounds': {f'r{i+1}': int(data_list[20 + i]) for i in range(5)},
             'daste': {f'd{i+1}': int(data_list[25 + i]) for i in range(5)}
         }
-
+        self.server.collect(self.data)
         # Print the updated dictionary (for debugging)
-        print(f'Sensor Data: {self.data}')
+        # print(f'Sensor Data: {self.data}')
 
 # Example usage:
 # engine = Engine("Engine1")

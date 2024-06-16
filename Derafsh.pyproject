@@ -6,6 +6,7 @@
         "rsc.qrc",
         "Worker.py",
         "Arduino.py",
-        "Engine.py"
+        "Engine.py",
+        "Server.py"
     ]
 }

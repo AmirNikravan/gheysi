@@ -8,12 +8,15 @@ from ui_form import Ui_MainWindow
 from Worker import *
 from Arduino import *
 from Engine import *
-
+from Server import *
 class MainWindow(QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        #server
+
+        #engin
         self.engine_name = 'Engine one'
         self.engine = Engine(self.engine_name)
         # right side stacked widget buttons
