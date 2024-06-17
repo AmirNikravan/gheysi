@@ -78,8 +78,7 @@ class Worker(QThread):
                     'toolButton_stop_engine':keys['k13'],
                     'toolButton_emergency_stop':keys['k14']
                     }
-                    for i in key:
-                        print(key.values())
+
                     self.keys_val.emit(key)
                     self.bar_val.emit(bar)
                     self.gauge_val.emit(gauge)
