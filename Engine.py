@@ -7,7 +7,6 @@ class Engine:
         self.name = name  # Initialize a name attribute
         self.server = Server()
     def update_engine(self, data_list):
-        # print(data_list)
         # Update the single dictionary with sensor data
         self.data = {
             'name': self.name,

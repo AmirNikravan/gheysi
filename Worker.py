@@ -8,7 +8,7 @@ from Server import *
 class Worker(QThread):
     gauge_val = Signal(dict)
     bar_val = Signal(dict)
-
+    keys_val = Signal(dict)
     def __init__(self, arduino_serial,engine):
         super().__init__()
         self.arduino_serial = arduino_serial
@@ -20,6 +20,7 @@ class Worker(QThread):
     def run(self):
         while self._running:
             self.msleep(1000)
+            self.arduino_serial.receive()
             self.server = Server()
             record = self.server.receive_data('sensors')
             self.server.disconnect()
@@ -30,39 +31,54 @@ class Worker(QThread):
             rounds = record[2]['rounds']
             pressure = record[2]['pressure']
             temperature = record[2]['temperature']
-            data = self.arduino_serial.receive()
-            if data:
-                self.received_data.extend(data.values())  # Append the list of numbers directly
-                if len(self.received_data) >= 24:
-                    self.received_data = self.received_data[:24]
+
+            if record:
+                if len(record) >= 3:
                     bar = {
-                        'sea_water_pressure': self.received_data[0],
-                        'oil_pressure': self.received_data[1],
-                        'fuel_pressure': self.received_data[2],
-                        'air_boost_pressure': self.received_data[3],
-                        'speed': self.received_data[4],
-                        'exhaust_temperature_a': self.received_data[5],
-                        'exhaust_temperature_b': self.received_data[6],
-                        'air_temp_after': self.received_data[7],
-                        'air_temp_before': self.received_data[8],
-                        'sea_water_temperature': self.received_data[9],
-                        'oil_temperature': self.received_data[10],
-                        'fresh_water_temp_after': self.received_data[11],
-                        'fresh_water_temp_before': self.received_data[12],
-                        'fuel_rack_position': self.received_data[13],
+                        'sea_water_pressure': pressure['p1'],
+                    #     'oil_pressure': self.received_data[1],
+                    #     'fuel_pressure': self.received_data[2],
+                    #     'air_boost_pressure': self.received_data[3],
+                    #     'speed': self.received_data[4],
+                    #     'exhaust_temperature_a': self.received_data[5],
+                    #     'exhaust_temperature_b': self.received_data[6],
+                    #     'air_temp_after': self.received_data[7],
+                    #     'air_temp_before': self.received_data[8],
+                    #     'sea_water_temperature': self.received_data[9],
+                    #     'oil_temperature': self.received_data[10],
+                    #     'fresh_water_temp_after': self.received_data[11],
+                    #     'fresh_water_temp_before': self.received_data[12],
+                    #     'fuel_rack_position': self.received_data[13],
                     }
                     gauge = {
-                        'banka_exhaust': self.received_data[14],
-                        'bankb_exhaust': self.received_data[15],
-                        'banka_cooler': self.received_data[16],
-                        'bankb_cooler': self.received_data[17],
-                        'fresh_water_before': self.received_data[18],
-                        'fresh_water_after': self.received_data[19],
-                        'oil': self.received_data[20],
-                        'fuel': self.received_data[21],
-                        'airboost': self.received_data[22],
-                        'seawater': self.received_data[23]
+                    #     'banka_exhaust': self.received_data[14],
+                    #     'bankb_exhaust': self.received_data[15],
+                    #     'banka_cooler': self.received_data[16],
+                    #     'bankb_cooler': self.received_data[17],
+                    #     'fresh_water_before': self.received_data[18],
+                    #     'fresh_water_after': self.received_data[19],
+                    #     'oil': self.received_data[20],
+                    #     'fuel': self.received_data[21],
+                    #     'airboost': self.received_data[22],
+                    #     'seawater': self.received_data[23]
                     }
+                    key={
+                    'toolButton_lamptest' :keys['k1'],
+                    'toolButton_lop':keys['k2'],
+                    'toolButton_mcr':keys['k3'],
+                    'toolButton_bridge':keys['k4'],
+                    'toolButton_increase_speed':keys['k5'],
+                    'toolButton_decrease_speed':keys['k6'],
+                    'toolButton_fault_ack':keys['k7'],
+                    'toolButton_fault_reset':keys['k8'],
+                    'toolButton_ahead':keys['k9'],
+                    'toolButton_neurtal':keys['k10'],
+                    'toolButton_astern':keys['k11'],
+                    'toolButton_start_engine':keys['k12'],
+                    'toolButton_stop_engine':keys['k13'],
+                    'toolButton_emergency_stop':keys['k14']
+                    }
+                    self.keys_val.emit(key)
                     self.bar_val.emit(bar)
                     self.gauge_val.emit(gauge)
                     self.received_data = []  # Reset received data for the next cycle

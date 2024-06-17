@@ -4,6 +4,25 @@ void setup() {
 }
 
 void loop() {
+  // Check for incoming serial data
+  if (Serial.available() > 0) {
+    String incomingData = Serial.readStringUntil('\n'); // Read the incoming data until newline character
+
+    // Print the received data for debugging
+    Serial.print("Received: ");
+    Serial.println(incomingData);
+
+    // Process the received data
+    processReceivedData(incomingData);
+  } else {
+    // Create and send sensor data
+    sendSensorData();
+  }
+
+  delay(10); // Small delay to allow serial processing
+}
+
+void sendSensorData() {
   // Create sensor values
   int temperatureValues[5];
   int pressureValues[5];
@@ -61,10 +80,7 @@ void loop() {
     }
   }
 
-  // Send data over serial
-  Serial.println(data);
-
-  delay(100); // Delay for 100 milliseconds before repeating
+  Serial.println(data); // Send data over serial
 }
 
 void Temperature(int values[]) {
@@ -98,7 +114,6 @@ void Keys(bool values[]) {
   values[12] = false;
   values[13] = false;
 
-
 }
 
 void Lamps(bool values[]) {
@@ -119,5 +134,29 @@ void Daste(int values[]) {
   // Generate random daste values between 0 and 100
   for (int i = 0; i < 5; ++i) {
     values[i] = random(0, 101);
+  }
+}
+
+void processReceivedData(String data) {
+  // Example function to process the received data
+  // This is where you can parse the data string and take actions based on it
+
+  // Assuming the data format is "Button <button_name> clicked!"
+  if (data.startsWith("Button ")) {
+    int buttonNameStartIndex = 7;
+    int buttonNameEndIndex = data.indexOf(" clicked!");
+    String buttonName = data.substring(buttonNameStartIndex, buttonNameEndIndex);
+
+    // Print the button name
+    Serial.print("Button pressed: ");
+    Serial.println(buttonName);
+
+    // Take actions based on the button name
+    // For example, if button name is "lamptest", do something
+    if (buttonName == "lamptest") {
+      // Perform actions for lamptest button press
+      // Example: turn on a lamp, activate a relay, etc.
+    }
+    // Add more conditions for other buttons as needed
   }
 }
