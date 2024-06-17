@@ -31,10 +31,11 @@ class MainWindow(QMainWindow):
 
         # thread for receiving data
         self.arduino_serial = ArduinoSerial(self.engine)
-        self.thread = Worker(self.arduino_serial, self.engine)
+        self.thread = Worker(self.arduino_serial,self.engine)
         self.thread.bar_val.connect(self.update_bars)
         self.thread.gauge_val.connect(self.update_gauges)
         self.thread.keys_val.connect(self.update_keys)
+
         self.thread.start()
 
         # thread for sending data
@@ -56,9 +57,10 @@ class MainWindow(QMainWindow):
         self.ui.toolButton_fault_ack.clicked.connect(self.create_button_handler("fault_ack"))
         self.ui.toolButton_fault_reset.clicked.connect(self.create_button_handler("fault_reset"))
         self.ui.toolButton_increase_speed.clicked.connect(self.create_button_handler("increase_speed"))
-        self.ui.toolButton_neurtal.clicked.connect(self.create_button_handler("neutral"))
+        self.ui.toolButton_neurtal.clicked.connect(self.create_button_handler("neurtal"))
         self.ui.toolButton_start_engine.clicked.connect(self.create_button_handler("start"))
         self.ui.toolButton_stop_engine.clicked.connect(self.create_button_handler("stop"))
+
     def create_button_handler(self, button_name):
         @Slot()
         def handler():
@@ -77,6 +79,7 @@ class MainWindow(QMainWindow):
         print(f'ToolButton {button_name} clicked')
         data_to_send = f"Button {button_name} clicked!"
         self.sender.send_data(data_to_send)
+
     def change_color(self, name):
         button = None
         if name == 'lamptest':
@@ -101,8 +104,8 @@ class MainWindow(QMainWindow):
             button = self.ui.toolButton_fault_reset
         elif name == 'increase_speed':
             button = self.ui.toolButton_increase_speed
-        elif name == 'neutral':
-            button = self.ui.toolButton_neutral
+        elif name == 'neurtal':
+            button = self.ui.toolButton_neurtal
         elif name == 'start':
             button = self.ui.toolButton_start_engine
         elif name == 'stop':
@@ -111,6 +114,7 @@ class MainWindow(QMainWindow):
         if button:
             button.setStyleSheet("background-color: red;")
             QTimer.singleShot(100, lambda: button.setStyleSheet("background-color: rgb(93, 93, 93);"))
+
     @Slot(dict)
     def update_keys(self, keys):
         button_mappings = {
@@ -137,6 +141,7 @@ class MainWindow(QMainWindow):
                     button.setStyleSheet("background-color: red;")
                 else:
                     button.setStyleSheet("")
+
     def desgin_gauge(self):
         self.ui.gauge_seawater.minValue = 0
         self.ui.gauge_seawater.maxValue = 120

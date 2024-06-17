@@ -1,18 +1,20 @@
+// Global arrays to keep track of key states
+bool keysValues[14];
+
 void setup() {
   Serial.begin(9600); // Initialize serial communication with baud rate 9600
   randomSeed(analogRead(0)); // Initialize random number generator with analog pin 0 value
+
+  // Initialize all key values to false
+  for (int i = 0; i < 14; ++i) {
+    keysValues[i] = false;
+  }
 }
 
 void loop() {
   // Check for incoming serial data
   if (Serial.available() > 0) {
     String incomingData = Serial.readStringUntil('\n'); // Read the incoming data until newline character
-
-    // Print the received data for debugging
-    Serial.print("Received: ");
-    Serial.println(incomingData);
-
-    // Process the received data
     processReceivedData(incomingData);
   } else {
     // Create and send sensor data
@@ -26,7 +28,6 @@ void sendSensorData() {
   // Create sensor values
   int temperatureValues[5];
   int pressureValues[5];
-  bool keysValues[14];
   bool lampsValues[5];
   int roundsValues[5];
   int dasteValues[5];
@@ -34,7 +35,6 @@ void sendSensorData() {
   // Generate sensor values
   Temperature(temperatureValues);
   Pressure(pressureValues);
-  Keys(keysValues);
   Lamps(lampsValues);
   Rounds(roundsValues);
   Daste(dasteValues);
@@ -97,25 +97,6 @@ void Pressure(int values[]) {
   }
 }
 
-void Keys(bool values[]) {
-  // Generate random keys values (true/false)
-  values[0] = false;
-  values[1] = false;
-  values[2] = false;
-  values[3] = false;
-  values[4] = false;
-  values[5] = false;
-  values[6] = false;
-  values[7] = false;
-  values[8] = false;
-  values[9] = false;
-  values[10] = false;
-  values[11] = false;
-  values[12] = false;
-  values[13] = false;
-
-}
-
 void Lamps(bool values[]) {
   // Generate random lamps values (true/false)
   for (int i = 0; i < 5; ++i) {
@@ -151,11 +132,35 @@ void processReceivedData(String data) {
     Serial.print("Button pressed: ");
     Serial.println(buttonName);
 
-    // Take actions based on the button name
-    // For example, if button name is "lamptest", do something
-    if (buttonName == "lamptest") {
-      // Perform actions for lamptest button press
-      // Example: turn on a lamp, activate a relay, etc.
+    // Take actions based on the button name and toggle the corresponding key
+    if (buttonName == "lamptest") {//1
+      keysValues[0] = !keysValues[0];
+    } else if (buttonName == "lop") {//2
+      keysValues[1] = !keysValues[1];
+    } else if (buttonName == "mcr") {//3
+      keysValues[2] = !keysValues[2];
+    } else if (buttonName == "bridge"){//4
+      keysValues[3] = !keysValues[3];
+    } else if (buttonName == "increase_speed") {//5
+      keysValues[4] = !keysValues[4];
+    } else if (buttonName == "decrease_speed") {//6
+      keysValues[5] = !keysValues[5];
+    } else if (buttonName == "fault_ack") {//7
+      keysValues[6] = !keysValues[6];
+    } else if (buttonName == "fault_reset") {//8
+      keysValues[7] = !keysValues[7];
+    } else if (buttonName == "ahead") {//9
+      keysValues[8] = !keysValues[8];
+    } else if (buttonName == "neurtal") {//10
+      keysValues[9] = !keysValues[9];
+    } else if (buttonName == "astern") {//1
+      keysValues[10] = !keysValues[10];
+    } else if (buttonName == "start") {
+      keysValues[11] = !keysValues[11];
+    } else if (buttonName == "stop") {
+      keysValues[12] = !keysValues[12];
+    } else if (buttonName == "emergency_stop") {
+      keysValues[13] = !keysValues[13];
     }
     // Add more conditions for other buttons as needed
   }

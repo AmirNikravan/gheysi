@@ -19,7 +19,7 @@ class Worker(QThread):
         self.engine = engine
     def run(self):
         while self._running:
-            self.msleep(1000)
+            self.msleep(10)
             self.arduino_serial.receive()
             self.server = Server()
             record = self.server.receive_data('sensors')
@@ -78,6 +78,8 @@ class Worker(QThread):
                     'toolButton_stop_engine':keys['k13'],
                     'toolButton_emergency_stop':keys['k14']
                     }
+                    for i in key:
+                        print(key.values())
                     self.keys_val.emit(key)
                     self.bar_val.emit(bar)
                     self.gauge_val.emit(gauge)
@@ -105,7 +107,7 @@ class Sender(QThread):
                 self.arduino_serial.send(self.data_to_send)
                 self.data_to_send = None
             self.mutex.unlock()
-            self.msleep(100)
+            self.msleep(10)
 
     def send_data(self, data):
         self.mutex.lock()
